@@ -90,7 +90,7 @@ class DoublyLLIterator<E> implements TwoWayIterator<E>
             throw new NoSuchElementException();
 
         E element = nextToReturn.getElement();
-        //TODO
+        nextToReturn = nextToReturn.getNext();
         return element;
     }
 
@@ -102,7 +102,7 @@ class DoublyLLIterator<E> implements TwoWayIterator<E>
             throw new NoSuchElementException();
 
         E element = prevToReturn.getElement();
-        //TODO
+        prevToReturn = prevToReturn.getPrevious();
         return element;
     }
 

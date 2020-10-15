@@ -1,5 +1,7 @@
 package dataStructures;
 
+import dataStructures.DoublyLinkedList.DListNode;
+
 /**
  * Doubly linked list Implementation 
  * @author AED  Team
@@ -86,6 +88,7 @@ public class DoublyLinkedList<E> implements List<E>  {
 
 
 	@Override
+	// Perguntar ao prof se o for é mais eficiente que o while
 	public int find(E element) {
 		DListNode<E> newNode=head;
 		for(int pos=0; pos<currentSize;pos++) {
@@ -146,7 +149,6 @@ public class DoublyLinkedList<E> implements List<E>  {
 			head=newNode;
 			tail=head;
 		}
-		
 		currentSize++;
 	}
 	
@@ -155,6 +157,10 @@ public class DoublyLinkedList<E> implements List<E>  {
 	 * @param element - Element to be added at a position.
 	 */
 	private void addMiddle(int position, E element) {
+		if(isEmpty()) { 
+			DListNode<E> newNode = new DListNode<E>(element);
+			head=newNode; tail=head; 
+		}
 		DListNode<E> secondNode=getNode(position);
 		DListNode<E> firstNode = getNode(position-1);
 		DListNode<E> newNode = new DListNode<E>(element,firstNode,secondNode);
@@ -195,9 +201,14 @@ public class DoublyLinkedList<E> implements List<E>  {
      * Pre-condition: the list is not empty.
      */
     private void removeFirstNode() {
-    	DListNode<E> secondNode=head.getNext();
-    	secondNode.setPrevious(null);
-    	head=secondNode;
+    	if(currentSize == 1) {
+			head = null;
+			tail = null;
+		}
+    	else {
+    		head = head.getNext();
+			head.setPrevious(null);
+    	}
     	currentSize--;
     }
 
@@ -216,10 +227,15 @@ public class DoublyLinkedList<E> implements List<E>  {
      * Pre-condition: the list is not empty.
      */
     private void removeLastNode() {
-    	DListNode<E> secondLastNode=tail.getPrevious();
-    	secondLastNode.setNext(null);
-    	tail=secondLastNode;
-    	currentSize--;
+    	if(currentSize == 1) {
+			head = null;
+			tail = null;
+		}
+    	else {
+			tail = tail.getPrevious();
+			tail.setNext(null);
+		}
+		currentSize--;
     }
 
 
@@ -232,17 +248,25 @@ public class DoublyLinkedList<E> implements List<E>  {
         return element;
     }
     
+    // E NECESSARIO FAZER NODE = NULL
     /**
      * Removes the specified node from the list.
      * Pre-condition: the node is neither the head nor the tail of the list.
      * @param node - middle node to be removed
      */
     private void removeMiddleNode(DListNode<E> node) {
-    	DListNode<E> firstNode = node.getPrevious();
-    	DListNode<E> secondNode = node.getNext();
-    	firstNode.setNext(secondNode);
-    	secondNode.setPrevious(firstNode);
-    	node=null;
+    	if(currentSize == 1) {
+			head = null;
+			tail = null;
+		}
+    	else {
+    		DListNode<E> firstNode = node.getPrevious();
+        	DListNode<E> secondNode = node.getNext();
+        	firstNode.setNext(secondNode);
+        	secondNode.setPrevious(firstNode);
+        	node=null;
+    	}
+    	currentSize--;
     }
     
 	/**
@@ -287,14 +311,11 @@ public class DoublyLinkedList<E> implements List<E>  {
 	 * @return node that has <element>.
 	 */
 	private DListNode<E> findNode(E element) {
-		int pos=0;
-		boolean found = false;
-		while(pos<currentSize && !found) {
-			if(getNode(pos).equals(element)) {
-				found = true;
-				return getNode(pos);
-			} 
-			pos++;
+		DListNode<E> node = head;
+		while(node != null) {
+			if(node.getElement().equals(element))
+				return node;
+			node = node.getNext();
 		}
 		return null;
 	}
