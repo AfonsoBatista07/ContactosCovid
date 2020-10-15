@@ -145,6 +145,7 @@ public class Main {
 		
 		try {
 			
+			System.out.println(SUCCESS_ADD_USER);
 		} catch(UserAlreadyExistException e) {
 			System.out.println(ERROR_USER_ALREADY_EXIST);
 		}
@@ -160,6 +161,7 @@ public class Main {
 		
 		try {
 			
+			System.out.println(SUCCESS_USER_DATA);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
@@ -175,6 +177,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_NEW_CONTACT);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UsersAlreadyFriendsException e) {
@@ -191,6 +194,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_REMOVE_CONTACT);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNotFriendException e) {
@@ -209,6 +213,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_LIST_CONTACTS);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNoContactsException e) {
@@ -225,6 +230,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_NEW_GROUP);
 		} catch(GroupAlreadyExistsException e) {
 			System.out.println(ERROR_GROUP_ALREADY_EXIST);
 		}
@@ -239,6 +245,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_GROUP_DATA);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		}
@@ -253,6 +260,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_REMOVE_GROUP);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		}
@@ -267,6 +275,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_NEW_GROUP_USER);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(GroupDoesntExistException e) {
@@ -287,6 +296,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_REMOVE_GROUP_USER);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(GroupDoesntExistException e) {
@@ -305,6 +315,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_LIST_GROUP_USERS);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(GroupIsEmptyException e) {
@@ -321,6 +332,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_NEW_MESSAGE);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
@@ -335,6 +347,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_LIST_MESSAGES);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNotFriendException e) {
@@ -351,6 +364,7 @@ public class Main {
 		// TODO 
 		try {
 			
+			System.out.println(SUCCESS_LIST_MESSAGES);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserDoesntExistException e) {
