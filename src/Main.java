@@ -70,8 +70,8 @@ public class Main {
 	 
 	/** 
 	 * Read the user input. 
-	 * @param in - Scanner. 
-	 * @return the user input. 
+	 * @param in - Scanner
+	 * @return the user input.
 	 */ 
 	private static String readOption(Scanner in) { 
 		return in.next().toUpperCase(); 
@@ -79,9 +79,9 @@ public class Main {
 	 
 	/** 
 	 * Execute one available command. 
-	 * @param in - Scanner. 
-	 * @param sec - SecuritySystem 
-	 * @param option - the user input. 
+	 * @param in - Scanner
+	 * @param csys - CovidSystem 
+	 * @param option - the user input 
 	 */ 
 	private static void exeOption(Scanner in, CovidSystem csys, String option) { 
 		switch(option) { 
