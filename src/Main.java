@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import covidSystem.*; 
-import dataStructures.*;
  
 /** 
  * Main Program. 
@@ -28,39 +27,40 @@ public class Main {
 	private static final String EXIT = "FIM"; 
 	 
 	/* Success Constants */ 
- 	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado."; 
- 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s"; 
- 	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado."; 
- 	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada."; 
+ 	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado.\n"; 
+ 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n"; 
+ 	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado.\n"; 
+ 	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada.\n"; 
  	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n"; 
- 	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado."; 
- 	private static final String SUCCESS_GROUP_DATA = "%s\n%s"; 
- 	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada."; 
- 	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado."; 
- 	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada."; 
+ 	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado.\n"; 
+ 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n"; 
+ 	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada.\n"; 
+ 	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado.\n"; 
+ 	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada.\n"; 
  	private static final String SUCCESS_LIST_GROUP_USERS = "%s %s\n"; 
- 	private static final String SUCCESS_NEW_MESSAGE = "Registo de mensagem executado."; 
+ 	private static final String SUCCESS_NEW_MESSAGE = "Registo de mensagem executado.\n"; 
  	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n";
- 	private static final String SUCCESS_EXIT = "Obrigado. Ate a proxima."; 
+ 	private static final String SUCCESS_EXIT = "Obrigado. Ate a proxima.\n"; 
  	 
  	/* Error Constants */ 
- 	private static final String ERROR_USER_ALREADY_EXIST = "Utilizador ja existente."; 
- 	private static final String ERROR_USER_DOESNT_EXIST = "Inexistencia do utilizador referido."; 
- 	private static final String ERROR_USERS_ALREADY_FRIENDS = "Existencia do contacto referido."; 
- 	private static final String ERROR_USERS_ARENT_FRIENDS = "Inexistencia do contacto referido."; 
- 	private static final String ERROR_CANT_REMOVE_CONTACT = "Contacto nao pode ser removido."; 
- 	private static final String ERROR_USER_NO_CONTACTS = "Inexistencia de contactos."; 
- 	private static final String ERROR_GROUP_ALREADY_EXIST = "Grupo ja existente."; 
- 	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido."; 
- 	private static final String ERROR_USER_ALREADY_IN_GROUP = "Existencia de aderencia referida."; 
- 	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia de aderencia referida."; 
- 	private static final String ERROR_GROUP_IS_EMPTY = "Inexistencia de participantes."; 
+ 	private static final String ERROR_USER_ALREADY_EXIST = "Utilizador ja existente.\n"; 
+ 	private static final String ERROR_USER_DOESNT_EXIST = "Inexistencia do utilizador referido.\n"; 
+ 	private static final String ERROR_USERS_ALREADY_FRIENDS = "Existencia do contacto referido.\n"; 
+ 	private static final String ERROR_USERS_ARENT_FRIENDS = "Inexistencia do contacto referido.\n"; 
+ 	private static final String ERROR_CANT_REMOVE_CONTACT = "Contacto nao pode ser removido.\n"; 
+ 	private static final String ERROR_USER_NO_CONTACTS = "Inexistencia de contactos.\n"; 
+ 	private static final String ERROR_GROUP_ALREADY_EXIST = "Grupo ja existente.\n"; 
+ 	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido.\n"; 
+ 	private static final String ERROR_USER_ALREADY_IN_GROUP = "Existencia de aderencia referida.\n"; 
+ 	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia de aderencia referida.\n"; 
+ 	private static final String ERROR_GROUP_IS_EMPTY = "Inexistencia de participantes.\n"; 
 	 
 	public static void main(String[] args) { 
 		Scanner in = new Scanner(System.in); 
 		CovidSystem csys = new CovidSystemClass(); 
 		String cm; 
-		do{ 
+		do{
+			System.out.print("> ");
 			cm = readOption(in); 
 			exeOption(in, csys, cm); 
 		} while(!cm.equals(EXIT)); 
@@ -139,7 +139,15 @@ public class Main {
 	 * @param csys - CovidSystem 
 	 */ 
 	private static void addUser(Scanner in, CovidSystem csys) { 
+		String userName = in.next(); int age = in.nextInt();
+		String locality = in.next(); String profession = in.next();
+		in.nextLine();
 		
+		try {
+			
+		} catch(UserAlreadyExistException e) {
+			System.out.println();
+		}
 	} 
 	
 	/**
@@ -148,7 +156,13 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void userData(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
+		// TODO 
+		
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		}
 		
 	}
 	
@@ -158,8 +172,14 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addContact(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(UsersAlreadyFriendsException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -168,8 +188,16 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeContact(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(UserNotFriendException e) {
+			System.out.println();
+		} catch(SameUserException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -178,8 +206,14 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listContacts(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(UserNoContactsException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -188,8 +222,12 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void newGroup(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(GroupAlreadyExistsException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -198,8 +236,12 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void groupData(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(GroupDoesntExistException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -208,8 +250,12 @@ public class Main {
 	 * @param csys - CovidSyste
 	 */
 	private static void removeGroup(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(GroupDoesntExistException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -218,8 +264,18 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addUserToGroup(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(GroupDoesntExistException e) {
+			System.out.println();
+		} catch(UserAlreadyInGroupException e) {
+			System.out.println();
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -228,8 +284,16 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeUserFromGroup(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(GroupDoesntExistException e) {
+			System.out.println();
+		} catch(UserArentInGroupExeption e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -238,8 +302,14 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupUsers(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(GroupDoesntExistException e) {
+			System.out.println();
+		} catch(GroupIsEmptyException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -248,8 +318,12 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void newMessage(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		}
 	}
 
 	/**
@@ -258,8 +332,14 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listUserMessages(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(UserNotFriendException e) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -268,8 +348,16 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupMessages(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		try {
+			
+		} catch(GroupDoesntExistException e) {
+			System.out.println();
+		} catch(UserDoesntExistException e) {
+			System.out.println();
+		} catch(UserArentInGroupExeption e) {
+			System.out.println();
+		}
 	}
  
 	/** 
