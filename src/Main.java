@@ -113,7 +113,7 @@ public class Main {
 				addUserToGroup(in, csys);
 				break; 
 			case REMOVE_GROUP_USER: 
-				removeUserInGroup(in, csys);
+				removeUserFromGroup(in, csys);
 				break; 
 			case LIST_GROUP_USERS: 
 				listGroupUsers(in, csys);
@@ -134,7 +134,7 @@ public class Main {
 	} 
 	
 	/** 
-	 * Adds a new User. 
+	 * Register a new User on System. 
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem 
 	 */ 
@@ -143,7 +143,7 @@ public class Main {
 	} 
 	
 	/**
-	 * 
+	 * Query the data of a User.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -153,7 +153,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Register a new contact between two Users.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -163,7 +163,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Removes a contact between two Users.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -173,6 +173,7 @@ public class Main {
 	}
 	
 	/**
+	 * List all the contacts of a User.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -182,7 +183,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Registers a new Group on System.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -192,27 +193,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
-	 * @param in - Scanner 
-	 * @param csys - CovidSystem
-	 */
-	private static void addUserToGroup(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * 
-	 * @param in - Scanner 
-	 * @param csys - CovidSystem
-	 */
-	private static void listGroupUsers(Scanner in, CovidSystem csys) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * 
+	 * Query the data of a group.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -222,7 +203,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Removes a group from System.
 	 * @param in - Scanner 
 	 * @param csys - CovidSyste
 	 */
@@ -232,17 +213,37 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Adds a User to a Group.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
-	private static void removeUserInGroup(Scanner in, CovidSystem csys) {
+	private static void addUserToGroup(Scanner in, CovidSystem csys) {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	/**
-	 * 
+	 * Removes a User from a Group.
+	 * @param in - Scanner 
+	 * @param csys - CovidSystem
+	 */
+	private static void removeUserFromGroup(Scanner in, CovidSystem csys) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * Lists all the Users from a Group.
+	 * @param in - Scanner 
+	 * @param csys - CovidSystem
+	 */
+	private static void listGroupUsers(Scanner in, CovidSystem csys) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * Registers a new associated Message to a User.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -252,7 +253,7 @@ public class Main {
 	}
 
 	/**
-	 * 
+	 * Lists all the User Messages.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
@@ -262,7 +263,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Lists all the Messages of a Group.
 	 * @param in - Scanner 
 	 * @param csys - CovidSystem
 	 */
