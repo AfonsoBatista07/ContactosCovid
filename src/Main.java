@@ -146,7 +146,7 @@ public class Main {
 		try {
 			
 		} catch(UserAlreadyExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_ALREADY_EXIST);
 		}
 	} 
 	
@@ -161,7 +161,7 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
 		
 	}
@@ -176,9 +176,9 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UsersAlreadyFriendsException e) {
-			System.out.println();
+			System.out.println(ERROR_USERS_ALREADY_FRIENDS);
 		}
 	}
 	
@@ -192,11 +192,11 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNotFriendException e) {
-			System.out.println();
+			System.out.println(ERROR_USERS_ARENT_FRIENDS);
 		} catch(SameUserException e) {
-			System.out.println();
+			System.out.println(ERROR_CANT_REMOVE_CONTACT);
 		}
 	}
 	
@@ -210,9 +210,9 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNoContactsException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_NO_CONTACTS);
 		}
 	}
 	
@@ -226,7 +226,7 @@ public class Main {
 		try {
 			
 		} catch(GroupAlreadyExistsException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_ALREADY_EXIST);
 		}
 	}
 	
@@ -240,7 +240,7 @@ public class Main {
 		try {
 			
 		} catch(GroupDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		}
 	}
 	
@@ -254,7 +254,7 @@ public class Main {
 		try {
 			
 		} catch(GroupDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		}
 	}
 	
@@ -268,13 +268,13 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(GroupDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserAlreadyInGroupException e) {
-			System.out.println();
-		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_ALREADY_IN_GROUP);
+		} catch(UserDoesntExistException e) {                             //SAME EXCEPTION ??
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
 	}
 	
@@ -288,11 +288,11 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(GroupDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserArentInGroupExeption e) {
-			System.out.println();
+			System.out.println(ERROR_USER_ARENT_IN_GROUP);
 		}
 	}
 	
@@ -306,9 +306,9 @@ public class Main {
 		try {
 			
 		} catch(GroupDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(GroupIsEmptyException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_IS_EMPTY);
 		}
 	}
 	
@@ -322,7 +322,7 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
 	}
 
@@ -336,9 +336,9 @@ public class Main {
 		try {
 			
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNotFriendException e) {
-			System.out.println();
+			System.out.println(ERROR_USERS_ARENT_FRIENDS);
 		}
 	}
 	
@@ -352,11 +352,11 @@ public class Main {
 		try {
 			
 		} catch(GroupDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserDoesntExistException e) {
-			System.out.println();
+			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserArentInGroupExeption e) {
-			System.out.println();
+			System.out.println(ERROR_USER_ARENT_IN_GROUP);
 		}
 	}
  
