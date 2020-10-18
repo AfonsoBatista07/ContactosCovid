@@ -53,10 +53,12 @@ public class Main {
  	private static final String ERROR_CANT_REMOVE_CONTACT = "Contacto nao pode ser removido.\n"; 
  	private static final String ERROR_USER_NO_CONTACTS = "Inexistencia de contactos.\n"; 
  	private static final String ERROR_GROUP_ALREADY_EXIST = "Grupo ja existente.\n"; 
- 	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido.\n"; 
+ 	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido.\n";
+ 	private static final String ERROR_GROUP_NO_MESSAGES = "Grupo nao tem mensagens.";
  	private static final String ERROR_USER_ALREADY_IN_GROUP = "Existencia de aderencia referida.\n"; 
  	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia de aderencia referida.\n"; 
  	private static final String ERROR_GROUP_IS_EMPTY = "Inexistencia de participantes.\n"; 
+ 	private static final String ERROR_CONTACT_NO_MESSAGES = "Contacto nao tem mensagens.\n";
 	 
 	public static void main(String[] args) { 
 		Scanner in = new Scanner(System.in); 
@@ -302,7 +304,7 @@ public class Main {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
-		} catch(UserArentInGroupExeption e) {
+		} catch(UserIsntInGroupException e) {
 			System.out.println(ERROR_USER_ARENT_IN_GROUP);
 		}
 	}
@@ -353,6 +355,8 @@ public class Main {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNotFriendException e) {
 			System.out.println(ERROR_USERS_ARENT_FRIENDS);
+		} catch(NoFriendMessagesException e) {
+			System.out.println(ERROR_CONTACT_NO_MESSAGES);
 		}
 	}
 	
@@ -370,8 +374,10 @@ public class Main {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
-		} catch(UserArentInGroupExeption e) {
+		} catch(UserIsntInGroupException e) {
 			System.out.println(ERROR_USER_ARENT_IN_GROUP);
+		} catch(NoGroupMessagesException e) {
+			System.out.println(ERROR_GROUP_NO_MESSAGES);
 		}
 	}
  

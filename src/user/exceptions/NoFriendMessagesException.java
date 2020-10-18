@@ -1,13 +1,13 @@
 package user.exceptions;
 
-public class UserArentInGroupExeption extends RuntimeException{
+public class NoFriendMessagesException extends RuntimeException{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public UserArentInGroupExeption() {
+	
+	public NoFriendMessagesException() {
 		super();
 	}
 }
