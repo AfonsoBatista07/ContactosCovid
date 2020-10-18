@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
-import covidSystem.*; 
+import covidSystem.*;
+import covidSystem.exceptions.*;
+import user.exceptions.*;
+import group.exceptions.*;
  
 /** 
  * Main Program. 
@@ -282,8 +285,6 @@ public class Main {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserAlreadyInGroupException e) {
 			System.out.println(ERROR_USER_ALREADY_IN_GROUP);
-		} catch(UserDoesntExistException e) {                             //SAME EXCEPTION ??
-			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
 	}
 	
