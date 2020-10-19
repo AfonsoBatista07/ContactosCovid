@@ -43,9 +43,11 @@ public interface CovidSystem {
 	void insertMessage(String login, String title, String text, String url)
 		throws UserDoesntExistException;
 	
+	//TODO
 	Iterator<Message> listContactMessages(String login1, String login2)
 		throws UserDoesntExistException, UserNotFriendException, NoFriendMessagesException; 
 	
+	//TODO
 	Iterator<Message> listGroupMessages(String groupName, String login)
 			throws UserNotFriendException, UserDoesntExistException, UserIsntInGroupException, NoGroupMessagesException; 
 }
