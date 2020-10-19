@@ -34,18 +34,18 @@ public class Main {
 	 
 	/* Success Constants */ 
  	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado.\n"; 
- 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n"; 
+ 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n\n"; 
  	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado.\n"; 
  	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada.\n"; 
- 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n"; 
+ 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n\n"; 
  	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado.\n"; 
- 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n"; 
+ 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n\n"; 
  	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada.\n"; 
  	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado.\n"; 
  	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada.\n"; 
- 	private static final String SUCCESS_LIST_GROUP_USERS = "%s %s\n"; 
+ 	private static final String SUCCESS_LIST_GROUP_USERS = "%s %s\n\n"; 
  	private static final String SUCCESS_NEW_MESSAGE = "Registo de mensagem executado.\n"; 
- 	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n";
+ 	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n\n";
  	private static final String SUCCESS_EXIT = "Obrigado. Ate a proxima.\n"; 
  	 
  	/* Error Constants */ 
@@ -150,7 +150,6 @@ public class Main {
 		String login = in.next(); String userName = in.next();
 		int age = in.nextInt(); String address = in.next(); 
 		String profession = in.next(); in.nextLine();
-		
 		try {
 			csys.insertUser(login, userName, age, address, profession);
 			System.out.println(SUCCESS_ADD_USER);
@@ -168,8 +167,9 @@ public class Main {
 		String login = in.next();
 		in.nextLine(); 
 		try {
-			User user = csys.showUser(login);     //TODO
-			System.out.println(SUCCESS_USER_DATA);
+			User user = csys.showUser(login);  
+			System.out.printf(SUCCESS_USER_DATA, login, user.getName(), 
+					user.getAge(), user.getAddress(), user.getProfession());
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		}
@@ -259,8 +259,8 @@ public class Main {
 		String groupName = in.nextLine();
 		in.nextLine();
 		try {
-			Group group = csys.showGroup(groupName);     //TODO
-			System.out.println(SUCCESS_GROUP_DATA);
+			Group group = csys.showGroup(groupName);    
+			System.out.printf(SUCCESS_GROUP_DATA, groupName, group.getDescritpion());
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		}

@@ -6,7 +6,7 @@ public interface User {
 	
 	String getProfession();
 	
-	String getLocality();
+	String getAddress();
 	
 	int getAge();
 }
