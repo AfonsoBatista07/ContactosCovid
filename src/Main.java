@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 import covidSystem.*;
+import user.User;
+import message.Message;
+import group.Group;
 import covidSystem.exceptions.*;
 import user.exceptions.*;
 import group.exceptions.*;
@@ -144,12 +147,12 @@ public class Main {
 	 * @param csys - CovidSystem 
 	 */ 
 	private static void addUser(Scanner in, CovidSystem csys) { 
-		String userName = in.next(); int age = in.nextInt();
-		String locality = in.next(); String profession = in.next();
-		in.nextLine();
+		String login = in.next(); String userName = in.next();
+		int age = in.nextInt(); String address = in.next(); 
+		String profession = in.next(); in.nextLine();
 		
 		try {
-			
+			csys.insertUser(login, userName, age, address, profession);
 			System.out.println(SUCCESS_ADD_USER);
 		} catch(UserAlreadyExistException e) {
 			System.out.println(ERROR_USER_ALREADY_EXIST);
@@ -162,10 +165,10 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void userData(Scanner in, CovidSystem csys) {
-		// TODO 
-		
+		String login = in.next();
+		in.nextLine(); 
 		try {
-			
+			User user = csys.showUser(login);     //TODO
 			System.out.println(SUCCESS_USER_DATA);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -179,9 +182,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addContact(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login1 = in.next();
+		String login2 = in.next();
+		in.nextLine(); 
 		try {
-			
+			csys.insertContact(login1, login2);
 			System.out.println(SUCCESS_NEW_CONTACT);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -196,9 +201,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeContact(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login1 = in.next();
+		String login2 = in.next();
+		in.nextLine();
 		try {
-			
+			csys.removeContact(login1, login2);
 			System.out.println(SUCCESS_REMOVE_CONTACT);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -215,9 +222,10 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listContacts(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login = in.nextLine();
+		in.nextLine();
 		try {
-			
+			Iterator<User> it = csys.listContacts(login);    //TODO
 			System.out.println(SUCCESS_LIST_CONTACTS);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -232,9 +240,10 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void newGroup(Scanner in, CovidSystem csys) {
-		// TODO 
+		String groupName = in.nextLine();
+		String description = in.nextLine();
 		try {
-			
+			csys.insertGroup(groupName, description);
 			System.out.println(SUCCESS_NEW_GROUP);
 		} catch(GroupAlreadyExistsException e) {
 			System.out.println(ERROR_GROUP_ALREADY_EXIST);
@@ -247,9 +256,10 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void groupData(Scanner in, CovidSystem csys) {
-		// TODO 
+		String groupName = in.nextLine();
+		in.nextLine();
 		try {
-			
+			Group group = csys.showGroup(groupName);     //TODO
 			System.out.println(SUCCESS_GROUP_DATA);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
@@ -262,9 +272,10 @@ public class Main {
 	 * @param csys - CovidSyste
 	 */
 	private static void removeGroup(Scanner in, CovidSystem csys) {
-		// TODO 
+		String groupName = in.nextLine();
+		in.nextLine();
 		try {
-			
+			csys.removeGroup(groupName);
 			System.out.println(SUCCESS_REMOVE_GROUP);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
@@ -277,9 +288,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addUserToGroup(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login = in.next().toUpperCase();
+		String groupName = in.next().toUpperCase();
+		in.nextLine(); 
 		try {
-			
+			csys.subscribeGroup(login, groupName);
 			System.out.println(SUCCESS_NEW_GROUP_USER);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -296,9 +309,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeUserFromGroup(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login = in.next();
+		String groupName = in.nextLine();
+		in.nextLine();
 		try {
-			
+			csys.removeSubscription(login, groupName);
 			System.out.println(SUCCESS_REMOVE_GROUP_USER);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -315,9 +330,10 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupUsers(Scanner in, CovidSystem csys) {
-		// TODO 
+		String groupName = in.nextLine();
+		in.nextLine();
 		try {
-			
+			Iterator<User> it = csys.listParticipants(groupName);   //TODO
 			System.out.println(SUCCESS_LIST_GROUP_USERS);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
@@ -332,9 +348,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void newMessage(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login = in.nextLine(); String title = in.nextLine();
+		String text = in.nextLine(); String url = in.nextLine();
+		in.nextLine();
 		try {
-			
+			csys.insertMessage(login, title, text, url);
 			System.out.println(SUCCESS_NEW_MESSAGE);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -347,9 +365,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listUserMessages(Scanner in, CovidSystem csys) {
-		// TODO 
+		String login1 = in.next();
+		String login2 = in.next();
+		in.nextLine(); 
 		try {
-			
+			Iterator<Message> it = csys.listContactMessages(login1, login2);    //TODO
 			System.out.println(SUCCESS_LIST_MESSAGES);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -366,9 +386,11 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupMessages(Scanner in, CovidSystem csys) {
-		// TODO 
+		String groupName = in.next();
+		String login = in.next();
+		in.nextLine();
 		try {
-			
+			Iterator<Messages> it = csys.listGroupMessages(groupName, login);     //TODO
 			System.out.println(SUCCESS_LIST_MESSAGES);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
