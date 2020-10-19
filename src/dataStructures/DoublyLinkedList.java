@@ -70,7 +70,7 @@ public class DoublyLinkedList<E> implements List<E>  {
 	// Number of elements in the list.
 	protected int currentSize;
 
-	public DoublyLinkedList( ){
+	public DoublyLinkedList(){
 		head = null;
 		tail = null;
 		currentSize = 0;
