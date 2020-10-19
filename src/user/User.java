@@ -1,5 +1,7 @@
 package user;
 
+import group.Group;
+
 public interface User {
 	
 	String getName();
@@ -9,4 +11,6 @@ public interface User {
 	String getAddress();
 	
 	int getAge();
+	
+	void addGroup(Group group);
 }
