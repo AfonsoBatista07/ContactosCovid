@@ -3,6 +3,7 @@ package user;
 import dataStructures.DoublyLinkedList;
 import dataStructures.List;
 import dataStructures.OrderedSequence;
+import dataStructures.OrderedSequenceClass;
 import group.Group;
 import user.exceptions.*;
 
@@ -19,11 +20,16 @@ public class UserClass implements User, Comparable<User> {
 		this.age = age;
 		this.profession = profession;
 		this.address = address;
-		groups = new DoublyLinkedList<Group>() ;
+		groups = new DoublyLinkedList<Group>();
+		contacts = new OrderedSequenceClass<User>();
 	}
 	
 	public int compareTo(User user) {
 		return login.compareTo(user.getLogin());
+	}
+	
+	public void newContact(User user) {
+		
 	}
 	
 	public String getLogin() {
