@@ -6,13 +6,8 @@ import dataStructures.OrderedSequence;
 import group.Group;
 import user.exceptions.*;
 
-<<<<<<< Updated upstream
-public class UserClass implements User {
-	private String login, name, profession, address;
-=======
 public class UserClass implements Comparable<User> {
 	private String name, profession, address, login;
->>>>>>> Stashed changes
 	private int age;
 	private List<Group> groups;
 	private OrderedSequence<User> contacts;
