@@ -1,53 +1,65 @@
 package covidSystem;
 
-import covidSystem.exceptions.GroupAlreadyExistsException;
-import covidSystem.exceptions.GroupDoesntExistException;
-import covidSystem.exceptions.SameUserException;
-import covidSystem.exceptions.UserAlreadyExistException;
-import covidSystem.exceptions.UserDoesntExistException;
+import group.*;
+import message.*;
+import user.*;
+import dataStructures.DoublyLinkedList;
 import dataStructures.Iterator;
-import group.Group;
-import group.exceptions.GroupIsEmptyException;
-import group.exceptions.NoGroupMessagesException;
-import message.Message;
-import user.User;
-import user.exceptions.NoFriendMessagesException;
-import user.exceptions.UserAlreadyInGroupException;
-import user.exceptions.UserIsntInGroupException;
-import user.exceptions.UserNoContactsException;
-import user.exceptions.UserNotFriendException;
-import user.exceptions.UsersAlreadyFriendsException;
+import dataStructures.List;
+import user.exceptions.*;
+import covidSystem.exceptions.*;
+import group.exceptions.*;
 
 public class CovidSystemClass implements CovidSystem {
-
+	
+	List<User> users;
+	List<Group> groups;
+	
 	public CovidSystemClass() {
-		
+		users = new DoublyLinkedList<User>();
+		groups = new DoublyLinkedList<Group>();
 	}
 
 	@Override
 	public void insertUser(String login, String name, int age, String address, String profession)
 			throws UserAlreadyExistException {
-		// TODO Auto-generated method stub
 		
+		if(users.find(login)!=null) throw new UserAlreadyExistException();
+		
+		User newUser = new UserClass(login, name, age, address, profession);
+		users.addLast(newUser);
 	}
 
 	@Override
 	public User showUser(String login) throws UserDoesntExistException {
-		// TODO Auto-generated method stub
-		return null;
+		User user = users.find(login);
+		if(user==null) throw new UserDoesntExistException();
+		return user;
 	}
 
 	@Override
 	public void insertContact(String login1, String login2)
 			throws UserDoesntExistException, UsersAlreadyFriendsException {
-		// TODO Auto-generated method stub
 		
+		User user1 = users.find(login1); User user2 = users.find(login2);
+		
+		if(user1==null || user2==null) throw new UserDoesntExistException();
+		
+		user1.newContact(user2); user2.newContact(user1);
+		//TODO
 	}
 
 	@Override
 	public void removeContact(String login1, String login2)
 			throws UserDoesntExistException, UserNotFriendException, SameUserException {
-		// TODO Auto-generated method stub
+		
+		User user1 = users.find(login1); User user2 = users.find(login2);
+		
+		if(user1==null || user2==null) throw new UserDoesntExistException();
+		//TODO
+		if(login1.equals(login2)) throw new SameUserException();
+		
+		user1.removeContact(user2); user2.removeContact(user1);
 		
 	}
 

@@ -5,17 +5,18 @@ import dataStructures.List;
 import group.Group;
 import user.exceptions.*;
 
-public class UserClass {
-	private String name, profession, locality;
+public class UserClass implements User {
+	private String login, name, profession, address;
 	private int age;
 	private List<Group> groups;
 	private static int MAXGROUPS = 10;
 	
-	public UserClass( String name, int age , String locality, String profession ) {
+	public UserClass(String login, String name, int age , String address, String profession ) {
+		this.login = login;
 		this.name = name;
 		this.age = age;
 		this.profession = profession;
-		this.locality = locality;
+		this.address = address;
 		groups = new DoublyLinkedList<Group>() ;
 	}
 	
@@ -23,12 +24,16 @@ public class UserClass {
 		return name;
 	}
 	
+	public String getLogin() {
+		return login;
+	}
+	
 	public String getProfession() {
 		return profession;
 	}
 	
-	public String getLocality() {
-		return locality;
+	public String getAddress() {
+		return address;
 	}
 	
 	public int getAge() {
