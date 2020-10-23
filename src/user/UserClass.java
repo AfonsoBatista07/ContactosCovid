@@ -34,10 +34,6 @@ public class UserClass implements Comparable<User> {
 		return name;
 	}
 	
-	public String getLogin() {
-		return login;
-	}
-	
 	public String getProfession() {
 		return profession;
 	}
