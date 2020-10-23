@@ -6,7 +6,7 @@ import dataStructures.OrderedSequence;
 import group.Group;
 import user.exceptions.*;
 
-public class UserClass implements Comparable<User> {
+public class UserClass implements User, Comparable<User> {
 	private String name, profession, address, login;
 	private int age;
 	private List<Group> groups;
