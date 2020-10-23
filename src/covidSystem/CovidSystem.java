@@ -20,7 +20,7 @@ public interface CovidSystem {
 	void removeContact(String login1, String login2) 
 			throws UserDoesntExistException, UserNotFriendException, SameUserException;
 	
-	User listContacts(String login)
+	Iterator<User> listContacts(String login)
 			throws UserDoesntExistException, UserNoContactsException;
 	
 	void insertGroup(String groupName, String description) throws GroupAlreadyExistsException;

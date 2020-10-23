@@ -226,7 +226,7 @@ public class Main {
 		String login = in.nextLine();
 		in.nextLine();
 		try {
-			Iterator<User> it = csys.listContacts(login);    //TODO
+			Iterator<User> it = csys.listContacts(login);   
 			System.out.println(SUCCESS_LIST_CONTACTS);
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -391,7 +391,7 @@ public class Main {
 		String login = in.next();
 		in.nextLine();
 		try {
-			Iterator<Messages> it = csys.listGroupMessages(groupName, login);     //TODO
+			Iterator<Message> it = csys.listGroupMessages(groupName, login);     
 			System.out.println(SUCCESS_LIST_MESSAGES);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);

@@ -52,7 +52,7 @@ public class CovidSystemClass implements CovidSystem {
 	}
 
 	@Override
-	public User listContacts(String login) throws UserDoesntExistException, UserNoContactsException {
+	public Iterator<User> listContacts(String login) throws UserDoesntExistException, UserNoContactsException {
 		// TODO Auto-generated method stub
 		return null;
 	}
