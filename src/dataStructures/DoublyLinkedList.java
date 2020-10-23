@@ -1,7 +1,5 @@
 package dataStructures;
 
-import dataStructures.DoublyLinkedList.DListNode;
-
 /**
  * Doubly linked list Implementation 
  * @author AED  Team
