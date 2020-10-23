@@ -2,7 +2,9 @@ package user;
 
 import group.Group;
 
-public interface User {
+public interface User extends Comparable<User>{
+	
+	String getLogin();
 	
 	String getName();
 	
