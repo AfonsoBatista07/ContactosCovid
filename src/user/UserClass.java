@@ -6,17 +6,22 @@ import group.Group;
 import user.exceptions.*;
 
 public class UserClass {
-	private String name, profession, locality;
+	private String name, profession, address, login;
 	private int age;
 	private List<Group> groups;
 	private static int MAXGROUPS = 10;
 	
-	public UserClass( String name, int age , String locality, String profession ) {
+	public UserClass( String login, String name, int age , String address, String profession ) {
+		this.login = login;
 		this.name = name;
 		this.age = age;
 		this.profession = profession;
-		this.locality = locality;
+		this.address = address;
 		groups = new DoublyLinkedList<Group>() ;
+	}
+	
+	public String getLogin() {
+		return login;
 	}
 	
 	public String getName() {
@@ -28,7 +33,7 @@ public class UserClass {
 	}
 	
 	public String getLocality() {
-		return locality;
+		return address;
 	}
 	
 	public int getAge() {
