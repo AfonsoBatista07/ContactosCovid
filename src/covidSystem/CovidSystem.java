@@ -1,5 +1,6 @@
 package covidSystem;
 import covidSystem.exceptions.*;
+import dataStructures.Iterator;
 import user.User;
 import group.Group;
 import message.Message;
@@ -19,7 +20,6 @@ public interface CovidSystem {
 	void removeContact(String login1, String login2) 
 			throws UserDoesntExistException, UserNotFriendException, SameUserException;
 	
-	//TODO
 	User listContacts(String login)
 			throws UserDoesntExistException, UserNoContactsException;
 	
@@ -35,19 +35,15 @@ public interface CovidSystem {
 	void removeSubscription(String login, String groupName)
 		throws UserDoesntExistException, GroupDoesntExistException, UserIsntInGroupException;
 	
-	//TODO
 	Iterator<User> listParticipants(String groupName)
 			throws UserDoesntExistException, GroupIsEmptyException;
 	
-
 	void insertMessage(String login, String title, String text, String url)
 		throws UserDoesntExistException;
 	
-	//TODO
 	Iterator<Message> listContactMessages(String login1, String login2)
 		throws UserDoesntExistException, UserNotFriendException, NoFriendMessagesException; 
 	
-	//TODO
 	Iterator<Message> listGroupMessages(String groupName, String login)
 			throws UserNotFriendException, UserDoesntExistException, UserIsntInGroupException, NoGroupMessagesException; 
 }

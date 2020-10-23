@@ -5,6 +5,7 @@ import user.User;
 import message.Message;
 import group.Group;
 import covidSystem.exceptions.*;
+import dataStructures.Iterator;
 import user.exceptions.*;
 import group.exceptions.*;
  
@@ -333,7 +334,7 @@ public class Main {
 		String groupName = in.nextLine();
 		in.nextLine();
 		try {
-			Iterator<User> it = csys.listParticipants(groupName);   //TODO
+			Iterator<User> it = csys.listParticipants(groupName);  
 			System.out.println(SUCCESS_LIST_GROUP_USERS);
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);

@@ -5,9 +5,11 @@ import covidSystem.exceptions.GroupDoesntExistException;
 import covidSystem.exceptions.SameUserException;
 import covidSystem.exceptions.UserAlreadyExistException;
 import covidSystem.exceptions.UserDoesntExistException;
+import dataStructures.Iterator;
 import group.Group;
 import group.exceptions.GroupIsEmptyException;
 import group.exceptions.NoGroupMessagesException;
+import message.Message;
 import user.User;
 import user.exceptions.NoFriendMessagesException;
 import user.exceptions.UserAlreadyInGroupException;
@@ -88,9 +90,9 @@ public class CovidSystemClass implements CovidSystem {
 	}
 
 	@Override
-	public void listParticipants(String group) throws UserDoesntExistException, GroupIsEmptyException {
+	public Iterator<User> listParticipants(String group) throws UserDoesntExistException, GroupIsEmptyException {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
