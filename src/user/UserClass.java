@@ -20,6 +20,10 @@ public class UserClass implements User {
 		groups = new DoublyLinkedList<Group>() ;
 	}
 	
+	public String getLogin() {
+		return login;
+	}
+	
 	public String getName() {
 		return name;
 	}
