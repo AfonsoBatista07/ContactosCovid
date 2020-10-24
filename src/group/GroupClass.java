@@ -1,6 +1,6 @@
 package group;
 
-public class GroupClass {
+public class GroupClass implements Group, Comparable<Group>{
 	
 	private String name, description;
 	
@@ -15,5 +15,10 @@ public class GroupClass {
 	
 	public String getDescritpion() {
 		return description;
+	}
+
+	@Override
+	public int compareTo(Group group) {
+		return name.compareTo(group.getName());
 	}
 }
