@@ -138,7 +138,9 @@ public class Main {
 				break;  
 			case EXIT: 
 				exit(); 
-				break; 
+				break;
+			default:
+				in.nextLine();in.nextLine();
 		} 
 	} 
 	
@@ -148,9 +150,9 @@ public class Main {
 	 * @param csys - CovidSystem 
 	 */ 
 	private static void addUser(Scanner in, CovidSystem csys) { 
-		String login = in.next(); String userName = in.nextLine();
-		int age = in.nextInt(); String address = in.nextLine(); 
-		String profession = in.nextLine(); in.nextLine();
+		String login = in.next().toUpperCase();; String userName = in.nextLine().trim().toUpperCase();;
+		int age = in.nextInt(); String address = in.nextLine().trim().toUpperCase();; 
+		String profession = in.nextLine().trim().toUpperCase();; in.nextLine();
 		try {
 			csys.insertUser(login, userName, age, address, profession);
 			System.out.println(SUCCESS_ADD_USER);
@@ -165,7 +167,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void userData(Scanner in, CovidSystem csys) {
-		String login = in.next();
+		String login = in.next().trim().toUpperCase();;
 		in.nextLine(); 
 		try {
 			User user = csys.showUser(login);  
@@ -183,8 +185,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addContact(Scanner in, CovidSystem csys) {
-		String login1 = in.next();
-		String login2 = in.next();
+		String login1 = in.next().toUpperCase();
+		String login2 = in.next().toUpperCase();
 		in.nextLine(); 
 		try {
 			csys.insertContact(login1, login2);
@@ -202,8 +204,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeContact(Scanner in, CovidSystem csys) {
-		String login1 = in.next();
-		String login2 = in.next();
+		String login1 = in.next().toUpperCase();
+		String login2 = in.next().toUpperCase();
 		in.nextLine();
 		try {
 			csys.removeContact(login1, login2);
@@ -223,7 +225,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listContacts(Scanner in, CovidSystem csys) {
-		String login = in.next();
+		String login = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			Iterator<User> it = csys.listContacts(login); 
@@ -245,8 +247,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void newGroup(Scanner in, CovidSystem csys) {
-		String groupName = in.nextLine();
-		String description = in.nextLine();
+		String groupName = in.nextLine().trim().toUpperCase();
+		String description = in.nextLine().trim().toUpperCase();
 		try {
 			csys.insertGroup(groupName, description);
 			System.out.println(SUCCESS_NEW_GROUP);
@@ -261,7 +263,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void groupData(Scanner in, CovidSystem csys) {
-		String groupName = in.next();
+		String groupName = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			Group group = csys.showGroup(groupName);    
@@ -277,7 +279,7 @@ public class Main {
 	 * @param csys - CovidSyste
 	 */
 	private static void removeGroup(Scanner in, CovidSystem csys) {
-		String groupName = in.nextLine();
+		String groupName = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			csys.removeGroup(groupName);
@@ -293,8 +295,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addUserToGroup(Scanner in, CovidSystem csys) {
-		String login = in.nextLine();
-		String groupName = in.nextLine();
+		String login = in.next().toUpperCase();
+		String groupName = in.next().toUpperCase();
 		in.nextLine(); 
 		try {
 			csys.subscribeGroup(login, groupName);
@@ -314,8 +316,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeUserFromGroup(Scanner in, CovidSystem csys) {
-		String login = in.nextLine();
-		String groupName = in.nextLine();
+		String login = in.next().toUpperCase();
+		String groupName = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			csys.removeSubscription(login, groupName);
@@ -335,7 +337,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupUsers(Scanner in, CovidSystem csys) {
-		String groupName = in.nextLine();
+		String groupName = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			Iterator<User> it = csys.listParticipants(groupName);
@@ -357,8 +359,10 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void newMessage(Scanner in, CovidSystem csys) {
-		String login = in.nextLine(); String title = in.nextLine();
-		String text = in.nextLine(); String url = in.nextLine();
+		String login = in.nextLine().trim().toUpperCase();
+		String title = in.nextLine().trim().toUpperCase();
+		String text = in.nextLine().trim().toUpperCase();
+		String url = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			csys.insertMessage(login, title, text, url);
@@ -374,8 +378,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listUserMessages(Scanner in, CovidSystem csys) {
-		String login1 = in.nextLine();
-		String login2 = in.nextLine();
+		String login1 = in.next().toUpperCase();
+		String login2 = in.nextLine().trim().toUpperCase();
 		in.nextLine(); 
 		try {
 			Iterator<Message> it = csys.listContactMessages(login1, login2);
@@ -399,8 +403,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupMessages(Scanner in, CovidSystem csys) {
-		String groupName = in.nextLine();
-		String login = in.nextLine();
+		String groupName = in.next().toUpperCase();
+		String login = in.nextLine().trim().toUpperCase();
 		in.nextLine();
 		try {
 			Iterator<Message> it = csys.listGroupMessages(groupName, login);
