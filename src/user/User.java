@@ -1,5 +1,6 @@
 package user;
 
+import dataStructures.Iterator;
 import group.Group;
 
 public interface User extends Comparable<User> {
@@ -16,5 +17,11 @@ public interface User extends Comparable<User> {
 	
 	void addGroup(Group group);
 	
+	void removeGroup(Group group);
+	
 	void newContact(User user);
+	
+	void removeContact(User user);
+	
+	Iterator<User> contactIterator();
 }

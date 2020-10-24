@@ -16,7 +16,7 @@ public class UserClass implements User, Comparable<User> {
 	private static int MAXGROUPS = 10;
 	
 	/**
-	 * The groups TAD could be and array with just 10 elements, or a DLL ask the teacher about this shit
+	 * The groups TAD could be and array with just 10 elements, or a DLL or array ask the teacher about this shit
 	 * MAXGroups isnt being verified
 	 * 
 	 */
