@@ -32,13 +32,18 @@ implements OrderedSequence<E> {
 
 	@Override
 	public boolean contains(E element) {
-		return list.find(element) != -1;
+		return get(element) != null;
 	}
 
 	@Override
 	// Das um elemento que não existe e devolve um que existe mas que tem as mesmas carateristicas
 	public E get(E element) {
-		return list.get(list.find(element));
+		Iterator<E> it = iterator();
+		while(it.hasNext()) {
+			if (it.next().compareTo(element) == 0)
+				return element;
+		}
+		return null;
 	}
 
 	@Override

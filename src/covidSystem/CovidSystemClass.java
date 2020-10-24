@@ -3,21 +3,19 @@ package covidSystem;
 import group.*;
 import message.*;
 import user.*;
-import dataStructures.DoublyLinkedList;
-import dataStructures.Iterator;
-import dataStructures.List;
+import dataStructures.*;
 import user.exceptions.*;
 import covidSystem.exceptions.*;
 import group.exceptions.*;
 
 public class CovidSystemClass implements CovidSystem {
 	
-	List<User> users;
-	List<Group> groups;
+	OrderedSequence<User> users;
+	OrderedSequence<Group> groups;
 	
 	public CovidSystemClass() {
-		users = new DoublyLinkedList<User>();
-		groups = new DoublyLinkedList<Group>();
+		users = new OrderedSequenceClass<User>();
+		groups = new OrderedSequenceClass<Group>();
 	}
 
 	@Override
