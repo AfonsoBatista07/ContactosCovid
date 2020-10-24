@@ -15,6 +15,12 @@ public class UserClass implements User, Comparable<User> {
 	private OrderedSequence<User> contacts;
 	private static int MAXGROUPS = 10;
 	
+	/**
+	 * The groups TAD could be and array with just 10 elements, or a DLL ask the teacher about this shit
+	 * MAXGroups isnt being verified
+	 * 
+	 */
+	
 	public UserClass(String login, String name, int age , String address, String profession ) {
 		this.login = login;
 		this.name = name;
