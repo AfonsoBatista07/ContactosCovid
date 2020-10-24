@@ -22,16 +22,14 @@ public class CovidSystemClass implements CovidSystem {
 	public void insertUser(String login, String name, int age, String address, String profession)
 			throws UserAlreadyExistException {
 		
-		if(users.find(login)!=null) throw new UserAlreadyExistException();
-		
 		User newUser = new UserClass(login, name, age, address, profession);
-		users.addLast(newUser);
+		if(users.get(newUser)!=null) throw new UserAlreadyExistException();
+		users.insert(newUser);
 	}
 
 	@Override
 	public User showUser(String login) throws UserDoesntExistException {
-		User user = users.find(login);
-		if(user==null) throw new UserDoesntExistException();
+		User user = getUser(login);
 		return user;
 	}
 
@@ -39,9 +37,7 @@ public class CovidSystemClass implements CovidSystem {
 	public void insertContact(String login1, String login2)
 			throws UserDoesntExistException, UsersAlreadyFriendsException {
 		
-		User user1 = users.find(login1); User user2 = users.find(login2);
-		
-		if(user1==null || user2==null) throw new UserDoesntExistException();
+		User user1 = getUser(login1); User user2 = getUser(login2);
 		
 		user1.newContact(user2); user2.newContact(user1);
 		//TODO
@@ -51,9 +47,7 @@ public class CovidSystemClass implements CovidSystem {
 	public void removeContact(String login1, String login2)
 			throws UserDoesntExistException, UserNotFriendException, SameUserException {
 		
-		User user1 = users.find(login1); User user2 = users.find(login2);
-		
-		if(user1==null || user2==null) throw new UserDoesntExistException();
+		User user1 = getUser(login1); User user2 = getUser(login2);
 		//TODO
 		if(login1.equals(login2)) throw new SameUserException();
 		
@@ -123,5 +117,13 @@ public class CovidSystemClass implements CovidSystem {
 			UserDoesntExistException, UserIsntInGroupException, NoGroupMessagesException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	// ns se se pode meter a exception assim mas ya
+	private User getUser(String login) {
+		User fakeUser = new UserClass(login, null, 0, null, null);
+		User realUser = users.get(fakeUser);
+		if(realUser == null) throw new UserDoesntExistException();
+		return realUser;
 	}
 }
