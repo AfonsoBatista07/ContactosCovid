@@ -15,4 +15,6 @@ public interface User extends Comparable<User> {
 	int getAge();
 	
 	void addGroup(Group group);
+	
+	void newContact(User user);
 }
