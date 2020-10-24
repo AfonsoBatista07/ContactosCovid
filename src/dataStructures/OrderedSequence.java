@@ -6,8 +6,6 @@ public interface OrderedSequence<E extends Comparable<E>> {
     boolean remove(E element);
 
     boolean contains(E element);
-    
-    boolean isEmpty();
 
     E get(E element);
 

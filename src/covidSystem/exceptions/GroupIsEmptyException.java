@@ -1,4 +1,4 @@
-package group.exceptions;
+package covidSystem.exceptions;
 
 public class GroupIsEmptyException extends RuntimeException{
 

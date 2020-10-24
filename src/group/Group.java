@@ -1,7 +1,7 @@
 package group;
 
 import dataStructures.Iterator;
-import group.exceptions.GroupIsEmptyException;
+import message.Message;
 import user.User;
 
 public interface Group extends Comparable<Group>{
@@ -14,5 +14,9 @@ public interface Group extends Comparable<Group>{
 	
 	void removeMember(User user);
 	
-	Iterator<User> listMembers() throws GroupIsEmptyException;
+	void recieveMessage(Message message);
+	
+	Iterator<User> listMembers();
+	
+	Iterator<Message> listMessages();
 }

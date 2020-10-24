@@ -28,5 +28,11 @@ public interface User extends Comparable<User> {
 	
 	boolean isContact(User user);
 	
-	Iterator<User> contactIterator();
+	boolean inGroup(Group group);
+	
+	Iterator<User> listContacts();
+	
+	Iterator<Message> listMessages();
+	
+	Iterator<Group> listGroups();
 }

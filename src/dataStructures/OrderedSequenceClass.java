@@ -24,10 +24,6 @@ implements OrderedSequence<E> {
 		if(!inserted) list.addLast(element);
 		
 	}
-	
-	public boolean isEmpty() {
-		return list.isEmpty();
-	}
 
 	@Override
 	public boolean remove(E element) {

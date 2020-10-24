@@ -34,35 +34,35 @@ public class Main {
 	private static final String EXIT = "FIM"; 
 	 
 	/* Success Constants */ 
- 	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado.\n"; 
- 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n\n"; 
- 	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado.\n"; 
- 	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada.\n"; 
- 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n\n"; 
- 	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado.\n"; 
- 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n\n"; 
- 	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada.\n"; 
- 	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado.\n"; 
- 	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada.\n"; 
- 	private static final String SUCCESS_LIST_GROUP_USERS = "%s %s\n\n"; 
- 	private static final String SUCCESS_NEW_MESSAGE = "Registo de mensagem executado.\n"; 
- 	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n\n";
- 	private static final String SUCCESS_EXIT = "Obrigado. Ate a proxima.\n"; 
+ 	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado."; 
+ 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n"; 
+ 	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado."; 
+ 	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada."; 
+ 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n"; 
+ 	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado."; 
+ 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n"; 
+ 	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada."; 
+ 	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado."; 
+ 	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada."; 
+ 	private static final String SUCCESS_LIST_GROUP_USERS = "%s %s\n"; 
+ 	private static final String SUCCESS_NEW_MESSAGE = "Registo de mensagem executado."; 
+ 	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n";
+ 	private static final String SUCCESS_EXIT = "Obrigado. Ate a proxima."; 
  	 
  	/* Error Constants */ 
- 	private static final String ERROR_USER_ALREADY_EXIST = "Utilizador ja existente.\n"; 
- 	private static final String ERROR_USER_DOESNT_EXIST = "Inexistencia do utilizador referido.\n"; 
- 	private static final String ERROR_USERS_ALREADY_FRIENDS = "Existencia do contacto referido.\n"; 
- 	private static final String ERROR_USERS_ARENT_FRIENDS = "Inexistencia do contacto referido.\n"; 
- 	private static final String ERROR_CANT_REMOVE_CONTACT = "Contacto nao pode ser removido.\n"; 
- 	private static final String ERROR_USER_NO_CONTACTS = "Inexistencia de contactos.\n"; 
- 	private static final String ERROR_GROUP_ALREADY_EXIST = "Grupo ja existente.\n"; 
- 	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido.\n";
+ 	private static final String ERROR_USER_ALREADY_EXIST = "Utilizador ja existente."; 
+ 	private static final String ERROR_USER_DOESNT_EXIST = "Inexistencia do utilizador referido."; 
+ 	private static final String ERROR_USERS_ALREADY_FRIENDS = "Existencia do contacto referido."; 
+ 	private static final String ERROR_USERS_ARENT_FRIENDS = "Inexistencia do contacto referido."; 
+ 	private static final String ERROR_CANT_REMOVE_CONTACT = "Contacto nao pode ser removido."; 
+ 	private static final String ERROR_USER_NO_CONTACTS = "Inexistencia de contactos."; 
+ 	private static final String ERROR_GROUP_ALREADY_EXIST = "Grupo ja existente."; 
+ 	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido.";
  	private static final String ERROR_GROUP_NO_MESSAGES = "Grupo nao tem mensagens.";
- 	private static final String ERROR_USER_ALREADY_IN_GROUP = "Existencia de aderencia referida.\n"; 
- 	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia de aderencia referida.\n"; 
- 	private static final String ERROR_GROUP_IS_EMPTY = "Inexistencia de participantes.\n"; 
- 	private static final String ERROR_CONTACT_NO_MESSAGES = "Contacto nao tem mensagens.\n";
+ 	private static final String ERROR_USER_ALREADY_IN_GROUP = "Existencia de aderencia referida."; 
+ 	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia de aderencia referida."; 
+ 	private static final String ERROR_GROUP_IS_EMPTY = "Inexistencia de participantes."; 
+ 	private static final String ERROR_CONTACT_NO_MESSAGES = "Contacto nao tem mensagens.";
 	 
 	public static void main(String[] args) { 
 		Scanner in = new Scanner(System.in); 
@@ -148,7 +148,7 @@ public class Main {
 	 * @param csys - CovidSystem 
 	 */ 
 	private static void addUser(Scanner in, CovidSystem csys) { 
-		String login = in.next(); String userName = in.next();
+		String login = in.next(); String userName = in.nextLine();
 		int age = in.nextInt(); String address = in.next(); 
 		String profession = in.next(); in.nextLine();
 		try {
@@ -165,7 +165,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void userData(Scanner in, CovidSystem csys) {
-		String login = in.next();
+		String login = in.nextLine();
 		in.nextLine(); 
 		try {
 			User user = csys.showUser(login);  
@@ -183,8 +183,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addContact(Scanner in, CovidSystem csys) {
-		String login1 = in.next();
-		String login2 = in.next();
+		String login1 = in.nextLine();
+		String login2 = in.nextLine();
 		in.nextLine(); 
 		try {
 			csys.insertContact(login1, login2);
@@ -202,8 +202,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeContact(Scanner in, CovidSystem csys) {
-		String login1 = in.next();
-		String login2 = in.next();
+		String login1 = in.nextLine();
+		String login2 = in.nextLine();
 		in.nextLine();
 		try {
 			csys.removeContact(login1, login2);
@@ -289,8 +289,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addUserToGroup(Scanner in, CovidSystem csys) {
-		String login = in.next().toUpperCase();
-		String groupName = in.next().toUpperCase();
+		String login = in.nextLine();
+		String groupName = in.next();
 		in.nextLine(); 
 		try {
 			csys.subscribeGroup(login, groupName);
@@ -310,7 +310,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeUserFromGroup(Scanner in, CovidSystem csys) {
-		String login = in.next();
+		String login = in.nextLine();
 		String groupName = in.nextLine();
 		in.nextLine();
 		try {
@@ -366,8 +366,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listUserMessages(Scanner in, CovidSystem csys) {
-		String login1 = in.next();
-		String login2 = in.next();
+		String login1 = in.nextLine();
+		String login2 = in.nextLine();
 		in.nextLine(); 
 		try {
 			Iterator<Message> it = csys.listContactMessages(login1, login2);    //TODO
@@ -388,7 +388,7 @@ public class Main {
 	 */
 	private static void listGroupMessages(Scanner in, CovidSystem csys) {
 		String groupName = in.next();
-		String login = in.next();
+		String login = in.nextLine();
 		in.nextLine();
 		try {
 			Iterator<Message> it = csys.listGroupMessages(groupName, login);     

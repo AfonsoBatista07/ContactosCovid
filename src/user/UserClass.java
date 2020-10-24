@@ -1,5 +1,7 @@
 package user;
 
+import covidSystem.exceptions.NoFriendMessagesException;
+import covidSystem.exceptions.UserNoContactsException;
 import dataStructures.*;
 import group.Group;
 import message.Message;
@@ -78,17 +80,23 @@ public class UserClass implements User, Comparable<User> {
 		feed.addFirst(message);
 	}
 	
-	public Iterator<User> contactIterator() {
-		if(contacts.isEmpty()) throw new UserNoContactsException();
+	public Iterator<User> listContacts() {
 		return contacts.iterator();
+	}
+	
+	public Iterator<Message> listMessages() {
+		return feed.iterator();
+	}
+	
+	public Iterator<Group> listGroups() {
+		return groups.iterator();
 	}
 	
 	public boolean isContact(User user) {
 		return contacts.contains(user);
 	}
 	
-	private boolean inGroup(Group group) {
+	public boolean inGroup(Group group) {
 		return groups.contains(group);
 	}
-
 }

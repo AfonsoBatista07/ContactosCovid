@@ -1,11 +1,11 @@
 package group;
 
+import covidSystem.exceptions.GroupIsEmptyException;
 import dataStructures.DoublyLinkedList;
 import dataStructures.Iterator;
 import dataStructures.List;
 import dataStructures.OrderedSequence;
 import dataStructures.OrderedSequenceClass;
-import group.exceptions.GroupIsEmptyException;
 import message.Message;
 import user.User;
 
@@ -46,8 +46,11 @@ public class GroupClass implements Group, Comparable<Group>{
 		messages.addFirst(message);
 	}
 	
-	public Iterator<User> listMembers() throws GroupIsEmptyException {
-		if(members.isEmpty()) throw new GroupIsEmptyException();
+	public Iterator<User> listMembers() {
 		return members.iterator();
+	}
+	
+	public Iterator<Message> listMessages() {
+		return messages.iterator();
 	}
 }	

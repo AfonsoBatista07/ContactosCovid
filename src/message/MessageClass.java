@@ -1,6 +1,6 @@
 package message;
 
-public class MessageClass {
+public class MessageClass implements Message{
 	private String title, text, url;
 	
 	public MessageClass( String title, String text, String url ) {

@@ -1,4 +1,4 @@
-package user.exceptions;
+package covidSystem.exceptions;
 
 public class UserNoContactsException extends RuntimeException{
 

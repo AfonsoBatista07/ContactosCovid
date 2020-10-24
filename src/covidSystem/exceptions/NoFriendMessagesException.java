@@ -1,4 +1,4 @@
-package user.exceptions;
+package covidSystem.exceptions;
 
 public class NoFriendMessagesException extends RuntimeException{
 

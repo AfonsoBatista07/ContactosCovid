@@ -53,7 +53,9 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public Iterator<User> listContacts(String login) throws UserDoesntExistException, UserNoContactsException {
-		return getUser(login).contactIterator();
+		Iterator<User> it = getUser(login).listContacts();
+		if(!it.hasNext()) throw new UserNoContactsException();
+		return it;
 	}
 
 	@Override
@@ -91,26 +93,44 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public Iterator<User> listParticipants(String group) throws GroupDoesntExistException, GroupIsEmptyException {
-		return getGroup(group).listMembers();
+		Iterator<User> it = getGroup(group).listMembers();
+		if(!it.hasNext()) throw new GroupIsEmptyException();
+		return it;
 	}
 
 	@Override
 	public void insertMessage(String login, String title, String text, String url) throws UserDoesntExistException {
+		Message message = new MessageClass(title, text, url);
+		User user = getUser(login);
+		user.recieveMessage(message);
+		Iterator<Group> itGroups = user.listGroups(); sendToGroups(itGroups, message);
+		Iterator<User> itContacts = user.listContacts(); sendToContacts(itContacts, message);
 		
 	}
 
 	@Override
-	public Iterator<Message> listContactMessages(String login1, String login2)
-			throws UserDoesntExistException, UserNotFriendException, NoFriendMessagesException {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<Message> listContactMessages(String login1, String login2) throws UserDoesntExistException,
+			UserNotFriendException, NoFriendMessagesException {
+		User user1 = getUser(login1); User user2 = getUser(login2);
+		if(!user1.isContact(user2)) throw new UserNotFriendException();
+		
+		Iterator<Message> it = user1.listMessages();
+		if(!it.hasNext()) throw new NoFriendMessagesException();
+		
+		return it;
 	}
 
 	@Override
-	public Iterator<Message> listGroupMessages(String group, String login) throws UserNotFriendException,
+	public Iterator<Message> listGroupMessages(String group, String login) throws GroupDoesntExistException,
 			UserDoesntExistException, UserIsntInGroupException, NoGroupMessagesException {
-		// TODO Auto-generated method stub
-		return null;
+		Group objGroup = getGroup(group);
+		User user = getUser(login);
+		if(!user.inGroup(objGroup)) throw new UserIsntInGroupException();
+		
+		Iterator<Message> it = objGroup.listMessages();
+		if(!it.hasNext()) throw new NoGroupMessagesException();
+		
+		return it;
 	}
 	
 	// ns se se pode meter a exception assim mas ya
@@ -126,5 +146,15 @@ public class CovidSystemClass implements CovidSystem {
 		Group realGroup = groups.get(fakeGroup);
 		if(realGroup == null) throw new GroupDoesntExistException();
 		return realGroup;
+	}
+	
+	private void sendToGroups(Iterator<Group> itGroups, Message message) {
+		while(itGroups.hasNext())
+			itGroups.next().recieveMessage(message);
+	}
+	
+	private void sendToContacts(Iterator<User> itContacs, Message message) {
+		while(itContacs.hasNext())
+			itContacs.next().recieveMessage(message);
 	}
 }
