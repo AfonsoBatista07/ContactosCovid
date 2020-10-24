@@ -35,12 +35,12 @@ public class Main {
 	 
 	/* Success Constants */ 
  	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado."; 
- 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n"; 
+ 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n\n"; 
  	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado."; 
  	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada."; 
- 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n"; 
+ 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n\n"; 
  	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado."; 
- 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n"; 
+ 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n\n"; 
  	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada."; 
  	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado."; 
  	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada."; 
@@ -149,8 +149,8 @@ public class Main {
 	 */ 
 	private static void addUser(Scanner in, CovidSystem csys) { 
 		String login = in.next(); String userName = in.nextLine();
-		int age = in.nextInt(); String address = in.next(); 
-		String profession = in.next(); in.nextLine();
+		int age = in.nextInt(); String address = in.nextLine(); 
+		String profession = in.nextLine(); in.nextLine();
 		try {
 			csys.insertUser(login, userName, age, address, profession);
 			System.out.println(SUCCESS_ADD_USER);
@@ -165,7 +165,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void userData(Scanner in, CovidSystem csys) {
-		String login = in.nextLine();
+		String login = in.next();
 		in.nextLine(); 
 		try {
 			User user = csys.showUser(login);  
@@ -183,8 +183,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void addContact(Scanner in, CovidSystem csys) {
-		String login1 = in.nextLine();
-		String login2 = in.nextLine();
+		String login1 = in.next();
+		String login2 = in.next();
 		in.nextLine(); 
 		try {
 			csys.insertContact(login1, login2);
@@ -202,8 +202,8 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void removeContact(Scanner in, CovidSystem csys) {
-		String login1 = in.nextLine();
-		String login2 = in.nextLine();
+		String login1 = in.next();
+		String login2 = in.next();
 		in.nextLine();
 		try {
 			csys.removeContact(login1, login2);
@@ -223,11 +223,15 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listContacts(Scanner in, CovidSystem csys) {
-		String login = in.nextLine();
+		String login = in.next();
 		in.nextLine();
 		try {
-			Iterator<User> it = csys.listContacts(login);   
-			System.out.println(SUCCESS_LIST_CONTACTS);
+			Iterator<User> it = csys.listContacts(login); 
+			User user;
+			while(it.hasNext()) {
+				user = it.next();
+				System.out.printf(SUCCESS_LIST_CONTACTS, user.getLogin(), user.getName());
+			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNoContactsException e) {
@@ -257,7 +261,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void groupData(Scanner in, CovidSystem csys) {
-		String groupName = in.nextLine();
+		String groupName = in.next();
 		in.nextLine();
 		try {
 			Group group = csys.showGroup(groupName);    
@@ -290,7 +294,7 @@ public class Main {
 	 */
 	private static void addUserToGroup(Scanner in, CovidSystem csys) {
 		String login = in.nextLine();
-		String groupName = in.next();
+		String groupName = in.nextLine();
 		in.nextLine(); 
 		try {
 			csys.subscribeGroup(login, groupName);
@@ -334,8 +338,12 @@ public class Main {
 		String groupName = in.nextLine();
 		in.nextLine();
 		try {
-			Iterator<User> it = csys.listParticipants(groupName);  
-			System.out.println(SUCCESS_LIST_GROUP_USERS);
+			Iterator<User> it = csys.listParticipants(groupName);
+			User user;
+			while(it.hasNext()) {
+				user = it.next();
+				System.out.printf(SUCCESS_LIST_GROUP_USERS, user.getLogin(), user.getName());
+			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(GroupIsEmptyException e) {
@@ -370,8 +378,12 @@ public class Main {
 		String login2 = in.nextLine();
 		in.nextLine(); 
 		try {
-			Iterator<Message> it = csys.listContactMessages(login1, login2);    //TODO
-			System.out.println(SUCCESS_LIST_MESSAGES);
+			Iterator<Message> it = csys.listContactMessages(login1, login2);
+			Message message;
+			while(it.hasNext()) {
+				message = it.next();
+				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
+			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
 		} catch(UserNotFriendException e) {
@@ -387,12 +399,16 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listGroupMessages(Scanner in, CovidSystem csys) {
-		String groupName = in.next();
+		String groupName = in.nextLine();
 		String login = in.nextLine();
 		in.nextLine();
 		try {
-			Iterator<Message> it = csys.listGroupMessages(groupName, login);     
-			System.out.println(SUCCESS_LIST_MESSAGES);
+			Iterator<Message> it = csys.listGroupMessages(groupName, login);
+			Message message;
+			while(it.hasNext()) {
+				message = it.next();
+				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
+			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserDoesntExistException e) {
