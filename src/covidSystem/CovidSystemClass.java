@@ -29,8 +29,7 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public User showUser(String login) throws UserDoesntExistException {
-		User user = getUser(login);
-		return user;
+		return getUser(login);
 	}
 
 	@Override
@@ -38,9 +37,7 @@ public class CovidSystemClass implements CovidSystem {
 			throws UserDoesntExistException, UsersAlreadyFriendsException {
 		
 		User user1 = getUser(login1); User user2 = getUser(login2);
-		
 		user1.newContact(user2); user2.newContact(user1);
-		//TODO
 	}
 
 	@Override
@@ -48,7 +45,6 @@ public class CovidSystemClass implements CovidSystem {
 			throws UserDoesntExistException, UserNotFriendException, SameUserException {
 		
 		User user1 = getUser(login1); User user2 = getUser(login2);
-		//TODO
 		if(login1.equals(login2)) throw new SameUserException();
 		
 		user1.removeContact(user2); user2.removeContact(user1);
@@ -57,51 +53,49 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public Iterator<User> listContacts(String login) throws UserDoesntExistException, UserNoContactsException {
-		// TODO Auto-generated method stub
-		return null;
+		return getUser(login).contactIterator();
 	}
 
 	@Override
 	public void insertGroup(String group, String description) throws GroupAlreadyExistsException {
-		// TODO Auto-generated method stub
+		Group newGroup = new GroupClass(group, description);
+		if(groups.get(newGroup)!=null) throw new GroupAlreadyExistsException();
 		
+		groups.insert(newGroup);
 	}
 
 	@Override
-	public Group showGroup(String group) throws UserDoesntExistException {
-		// TODO Auto-generated method stub
-		return null;
+	public Group showGroup(String group) throws GroupDoesntExistException {
+		return getGroup(group);
 	}
 
 	@Override
-	public void removeGroup(String group) throws UserDoesntExistException {
-		// TODO Auto-generated method stub
-		
+	public void removeGroup(String group) throws GroupDoesntExistException {
+		Group objGroup = getGroup(group);
+		groups.remove(objGroup);
 	}
 
 	@Override
 	public void subscribeGroup(String login, String group)
 			throws UserDoesntExistException, GroupDoesntExistException, UserAlreadyInGroupException {
-		// TODO Auto-generated method stub
-		
+		User user = getUser(login); Group objGroup = getGroup(group);
+		user.addGroup(objGroup); objGroup.addMember(user);
 	}
 
 	@Override
 	public void removeSubscription(String login, String group)
 			throws UserDoesntExistException, GroupDoesntExistException, UserIsntInGroupException {
-		// TODO Auto-generated method stub
-		
+		User user = getUser(login); Group objGroup = getGroup(group);
+		user.removeGroup(objGroup); objGroup.removeMember(user);
 	}
 
 	@Override
-	public Iterator<User> listParticipants(String group) throws UserDoesntExistException, GroupIsEmptyException {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<User> listParticipants(String group) throws GroupDoesntExistException, GroupIsEmptyException {
+		return getGroup(group).listMembers();
 	}
 
 	@Override
 	public void insertMessage(String login, String title, String text, String url) throws UserDoesntExistException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -120,10 +114,17 @@ public class CovidSystemClass implements CovidSystem {
 	}
 	
 	// ns se se pode meter a exception assim mas ya
-	private User getUser(String login) {
+	private User getUser(String login) throws UserDoesntExistException {
 		User fakeUser = new UserClass(login, null, 0, null, null);
 		User realUser = users.get(fakeUser);
 		if(realUser == null) throw new UserDoesntExistException();
 		return realUser;
+	}
+	
+	private Group getGroup(String group) throws GroupDoesntExistException {
+		Group fakeGroup = new GroupClass(group, null);
+		Group realGroup = groups.get(fakeGroup);
+		if(realGroup == null) throw new GroupDoesntExistException();
+		return realGroup;
 	}
 }

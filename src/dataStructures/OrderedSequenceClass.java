@@ -24,6 +24,10 @@ implements OrderedSequence<E> {
 		if(!inserted) list.addLast(element);
 		
 	}
+	
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
 
 	@Override
 	public boolean remove(E element) {
@@ -40,8 +44,9 @@ implements OrderedSequence<E> {
 	public E get(E element) {
 		Iterator<E> it = iterator();
 		while(it.hasNext()) {
-			if (it.next().compareTo(element) == 0)
-				return element;
+			E object = it.next();
+			if (object.compareTo(element) == 0)
+				return object;
 		}
 		return null;
 	}

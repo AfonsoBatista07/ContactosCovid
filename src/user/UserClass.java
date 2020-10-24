@@ -1,10 +1,6 @@
 package user;
 
-import dataStructures.DoublyLinkedList;
-import dataStructures.Iterator;
-import dataStructures.List;
-import dataStructures.OrderedSequence;
-import dataStructures.OrderedSequenceClass;
+import dataStructures.*;
 import group.Group;
 import message.Message;
 import user.exceptions.*;
@@ -83,6 +79,7 @@ public class UserClass implements User, Comparable<User> {
 	}
 	
 	public Iterator<User> contactIterator() {
+		if(contacts.isEmpty()) throw new UserNoContactsException();
 		return contacts.iterator();
 	}
 	

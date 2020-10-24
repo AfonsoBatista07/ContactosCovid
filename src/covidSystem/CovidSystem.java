@@ -25,9 +25,9 @@ public interface CovidSystem {
 	
 	void insertGroup(String groupName, String description) throws GroupAlreadyExistsException;
 	
-	Group showGroup(String groupName) throws UserDoesntExistException;
+	Group showGroup(String groupName) throws GroupDoesntExistException;
 	
-	void removeGroup(String groupName) throws UserDoesntExistException;
+	void removeGroup(String groupName) throws GroupDoesntExistException;
 	
 	void subscribeGroup(String login, String groupName) 
 			throws UserDoesntExistException, GroupDoesntExistException, UserAlreadyInGroupException;
