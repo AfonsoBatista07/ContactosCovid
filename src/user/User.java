@@ -2,6 +2,7 @@ package user;
 
 import dataStructures.Iterator;
 import group.Group;
+import message.Message;
 
 public interface User extends Comparable<User> {
 	
@@ -22,6 +23,10 @@ public interface User extends Comparable<User> {
 	void newContact(User user);
 	
 	void removeContact(User user);
+	
+	void recieveMessage(Message message);
+	
+	boolean isContact(User user);
 	
 	Iterator<User> contactIterator();
 }

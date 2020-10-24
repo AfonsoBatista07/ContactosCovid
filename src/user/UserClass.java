@@ -6,6 +6,7 @@ import dataStructures.List;
 import dataStructures.OrderedSequence;
 import dataStructures.OrderedSequenceClass;
 import group.Group;
+import message.Message;
 import user.exceptions.*;
 
 public class UserClass implements User, Comparable<User> {
@@ -13,6 +14,7 @@ public class UserClass implements User, Comparable<User> {
 	private int age;
 	private OrderedSequence<Group> groups;
 	private OrderedSequence<User> contacts;
+	private List<Message> feed;
 	private static int MAXGROUPS = 10;
 	
 	/**
@@ -29,6 +31,7 @@ public class UserClass implements User, Comparable<User> {
 		this.address = address;
 		groups = new OrderedSequenceClass<Group>();
 		contacts = new OrderedSequenceClass<User>();
+		feed = new DoublyLinkedList<Message>();
 	}
 	
 	public int compareTo(User user) {
@@ -75,11 +78,15 @@ public class UserClass implements User, Comparable<User> {
 		groups.remove(group);
 	}
 	
+	public void recieveMessage(Message message) {
+		feed.addFirst(message);
+	}
+	
 	public Iterator<User> contactIterator() {
 		return contacts.iterator();
 	}
 	
-	private boolean isContact(User user) {
+	public boolean isContact(User user) {
 		return contacts.contains(user);
 	}
 	

@@ -15,7 +15,7 @@ implements OrderedSequence<E> {
 		boolean inserted = false;
 		int pos = 0;
 		while (it.hasNext() && !inserted) {
-			if(it.next().compareTo(element) > 0) {
+			if(it.next().compareTo(element) >= 0) {
 				list.add(pos, element);
 				inserted = true;
 			}
