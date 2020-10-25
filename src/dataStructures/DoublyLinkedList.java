@@ -86,7 +86,6 @@ public class DoublyLinkedList<E> implements List<E>  {
 
 
 	@Override
-	// Perguntar ao prof se o for é mais eficiente que o while
 	public int find(E element) {
 		DListNode<E> newNode=head;
 		for(int pos=0; pos<currentSize;pos++) {

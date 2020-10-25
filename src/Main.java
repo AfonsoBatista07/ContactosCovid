@@ -35,12 +35,12 @@ public class Main {
 	 
 	/* Success Constants */ 
  	private static final String SUCCESS_ADD_USER = "Registo de utilizador executado."; 
- 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n\n"; 
+ 	private static final String SUCCESS_USER_DATA = "%s %s %d\n%s %s\n"; 
  	private static final String SUCCESS_NEW_CONTACT = "Registo de contacto executado."; 
  	private static final String SUCCESS_REMOVE_CONTACT = "Remocao de contacto executada."; 
- 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n\n"; 
+ 	private static final String SUCCESS_LIST_CONTACTS = "%s %s\n"; 
  	private static final String SUCCESS_NEW_GROUP = "Registo de grupo executado."; 
- 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n\n"; 
+ 	private static final String SUCCESS_GROUP_DATA = "%s\n%s\n"; 
  	private static final String SUCCESS_REMOVE_GROUP = "Remocao de grupo executada."; 
  	private static final String SUCCESS_NEW_GROUP_USER = "Registo de participante executado."; 
  	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada."; 
@@ -60,7 +60,8 @@ public class Main {
  	private static final String ERROR_GROUP_DOESNT_EXIST = "Inexistencia do grupo referido.";
  	private static final String ERROR_GROUP_NO_MESSAGES = "Grupo nao tem mensagens.";
  	private static final String ERROR_USER_ALREADY_IN_GROUP = "Existencia de aderencia referida."; 
- 	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia de aderencia referida."; 
+ 	private static final String ERROR_USER_ARENT_IN_GROUP = "Inexistencia do participante referido."; 
+ 	private static final String ERROR_USER_ARENT_IN_GROUP_RP = "Inexistencia de aderencia referida.";
  	private static final String ERROR_GROUP_IS_EMPTY = "Inexistencia de participantes."; 
  	private static final String ERROR_CONTACT_NO_MESSAGES = "Contacto nao tem mensagens.";
 	 
@@ -150,9 +151,9 @@ public class Main {
 	 * @param csys - CovidSystem 
 	 */ 
 	private static void addUser(Scanner in, CovidSystem csys) { 
-		String login = in.next().toUpperCase();; String userName = in.nextLine().trim().toUpperCase();;
-		int age = in.nextInt(); String address = in.nextLine().trim().toUpperCase();; 
-		String profession = in.nextLine().trim().toUpperCase();; in.nextLine();
+		String login = in.next().toUpperCase(); String userName = in.nextLine().trim().toUpperCase();
+		int age = in.nextInt(); String address = in.nextLine().trim().toUpperCase();
+		String profession = in.nextLine().trim().toUpperCase(); in.nextLine();
 		try {
 			csys.insertUser(login, userName, age, address, profession);
 			System.out.println(SUCCESS_ADD_USER);
@@ -167,7 +168,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void userData(Scanner in, CovidSystem csys) {
-		String login = in.next().trim().toUpperCase();;
+		String login = in.next().trim().toUpperCase();
 		in.nextLine(); 
 		try {
 			User user = csys.showUser(login);  
@@ -233,6 +234,7 @@ public class Main {
 			while(it.hasNext()) {
 				user = it.next();
 				System.out.printf(SUCCESS_LIST_CONTACTS, user.getLogin(), user.getName());
+				if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -327,7 +329,7 @@ public class Main {
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserIsntInGroupException e) {
-			System.out.println(ERROR_USER_ARENT_IN_GROUP);
+			System.out.println(ERROR_USER_ARENT_IN_GROUP_RP);
 		}
 	}
 	
@@ -345,6 +347,7 @@ public class Main {
 			while(it.hasNext()) {
 				user = it.next();
 				System.out.printf(SUCCESS_LIST_GROUP_USERS, user.getLogin(), user.getName());
+				if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
@@ -387,6 +390,7 @@ public class Main {
 			while(it.hasNext()) {
 				message = it.next();
 				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
+				if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -412,6 +416,7 @@ public class Main {
 			while(it.hasNext()) {
 				message = it.next();
 				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
+				if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
