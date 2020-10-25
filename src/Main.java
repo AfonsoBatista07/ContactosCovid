@@ -234,7 +234,6 @@ public class Main {
 			while(it.hasNext()) {
 				user = it.next();
 				System.out.printf(SUCCESS_LIST_CONTACTS, user.getLogin(), user.getName());
-				if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -251,6 +250,7 @@ public class Main {
 	private static void newGroup(Scanner in, CovidSystem csys) {
 		String groupName = in.nextLine().trim().toUpperCase();
 		String description = in.nextLine().trim().toUpperCase();
+		in.nextLine();
 		try {
 			csys.insertGroup(groupName, description);
 			System.out.println(SUCCESS_NEW_GROUP);
@@ -347,7 +347,6 @@ public class Main {
 			while(it.hasNext()) {
 				user = it.next();
 				System.out.printf(SUCCESS_LIST_GROUP_USERS, user.getLogin(), user.getName());
-				if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);

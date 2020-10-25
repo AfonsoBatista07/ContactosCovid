@@ -102,7 +102,7 @@ public class CovidSystemClass implements CovidSystem {
 	public void insertMessage(String login, String title, String text, String url) throws UserDoesntExistException {
 		Message message = new MessageClass(title, text, url);
 		User user = getUser(login);
-		//user.recieveMessage(message);
+		user.recieveMessage(message);
 		Iterator<Group> itGroups = user.listGroups(); sendToGroups(itGroups, message);
 		Iterator<User> itContacts = user.listContacts(); sendToContacts(itContacts, message);
 		

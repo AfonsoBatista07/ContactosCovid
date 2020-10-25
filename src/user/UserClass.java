@@ -57,7 +57,7 @@ public class UserClass implements User, Comparable<User> {
 	}
 	
 	public void newContact(User user) {
-		if(isContact(user)) throw new UsersAlreadyFriendsException();
+		if(isContact(user) || user.compareTo(this) == 0) throw new UsersAlreadyFriendsException();
 		contacts.insert(user);
 	}
 	
@@ -93,6 +93,8 @@ public class UserClass implements User, Comparable<User> {
 	}
 	
 	public boolean isContact(User user) {
+		if(user.compareTo(this) == 0)
+			return true;
 		return contacts.contains(user);
 	}
 	

@@ -22,7 +22,6 @@ implements OrderedSequence<E> {
 			pos++;
 		}
 		if(!inserted) list.addLast(element);
-		
 	}
 
 	@Override

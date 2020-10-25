@@ -1,5 +1,7 @@
 package dataStructures;
 
+import dataStructures.DoublyLinkedList.DListNode;
+
 /**
  * Doubly linked list Implementation 
  * @author AED  Team
@@ -120,18 +122,10 @@ public class DoublyLinkedList<E> implements List<E>  {
 	 * @return a node at a <position>.
 	 */
 	private DListNode<E> getNode(int position) {
-		DListNode<E> newNode;
-		
-		if(position<=currentSize/2) {             			    //Se estiver mais perto da head
-			newNode=head;
-			for(int i=1;i<=position;i++)
-				newNode=newNode.getNext();
-		} else {                                                 //Se estiver mais perto da tail
-			newNode=tail;
-			for(int i=currentSize-2;i>=position;i--)
-				newNode=newNode.getNext();
-		}
-		return newNode;
+		DListNode<E> auxNode=head;
+		for(int i=1;i<=position;i++)
+			auxNode = auxNode.getNext();
+		return auxNode;
 	}
 	
 
@@ -216,7 +210,7 @@ public class DoublyLinkedList<E> implements List<E>  {
         if (isEmpty()) throw new NoElementException();
 
         E element = head.getElement();
-        this.removeFirstNode();
+        removeFirstNode();
         return element;
     }
 	
