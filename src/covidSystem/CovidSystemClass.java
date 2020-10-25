@@ -74,6 +74,10 @@ public class CovidSystemClass implements CovidSystem {
 	@Override
 	public void removeGroup(String group) throws GroupDoesntExistException {
 		Group objGroup = getGroup(group);
+		Iterator<User> it = objGroup.listMembers();
+		while(it.hasNext()) {
+			it.next().removeGroup(objGroup);
+		}
 		groups.remove(objGroup);
 	}
 

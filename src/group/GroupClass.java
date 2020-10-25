@@ -53,4 +53,5 @@ public class GroupClass implements Group, Comparable<Group>{
 	public Iterator<Message> listMessages() {
 		return messages.iterator();
 	}
+	
 }	
