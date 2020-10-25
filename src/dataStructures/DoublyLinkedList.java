@@ -111,8 +111,7 @@ public class DoublyLinkedList<E> implements List<E>  {
 
 	@Override
 	public E get(int position) throws InvalidPositionException {
-		if (position<0 || position>=currentSize) 
-			throw new InvalidPositionException();
+		if (position<0 || position>=currentSize) throw new InvalidPositionException();
 		return getNode(position).getElement();
 	}
 	
@@ -120,7 +119,7 @@ public class DoublyLinkedList<E> implements List<E>  {
 	 * @param position - Position of node to be returned.
 	 * @return a node at a <position>.
 	 */
-	private DListNode<E> getNode(int position){
+	private DListNode<E> getNode(int position) {
 		DListNode<E> newNode;
 		
 		if(position<=currentSize/2) {             			    //Se estiver mais perto da head
@@ -129,7 +128,7 @@ public class DoublyLinkedList<E> implements List<E>  {
 				newNode=newNode.getNext();
 		} else {                                                 //Se estiver mais perto da tail
 			newNode=tail;
-			for(int i=currentSize-1;i>=position;i--)
+			for(int i=currentSize-2;i>=position;i--)
 				newNode=newNode.getNext();
 		}
 		return newNode;
@@ -138,9 +137,10 @@ public class DoublyLinkedList<E> implements List<E>  {
 
 	@Override
 	public void addFirst(E element) {
-		DListNode<E> newNode = new DListNode<E>(element,null,head);
+		DListNode<E> newNode = new DListNode<E>(element);
 		if(!isEmpty()) { 
 			head.setPrevious(newNode);
+			newNode.setNext(head);
 			head=newNode;
 		} else {
 			head=newNode;
@@ -157,11 +157,12 @@ public class DoublyLinkedList<E> implements List<E>  {
 		if(isEmpty()) { 
 			DListNode<E> newNode = new DListNode<E>(element);
 			head=newNode; tail=head; 
+		} else {                                                                     
+			DListNode<E> secondNode = getNode(position);
+			DListNode<E> firstNode = secondNode.getPrevious();
+			DListNode<E> newNode = new DListNode<E>(element,firstNode,secondNode);
+			firstNode.setNext(newNode); secondNode.setPrevious(newNode);
 		}
-		DListNode<E> secondNode=getNode(position);
-		DListNode<E> firstNode = getNode(position-1);
-		DListNode<E> newNode = new DListNode<E>(element,firstNode,secondNode);
-		firstNode.setNext(newNode); secondNode.setPrevious(newNode);
 		currentSize++;
 		
 	}
@@ -172,9 +173,9 @@ public class DoublyLinkedList<E> implements List<E>  {
 		if(isEmpty()) { head=newNode; tail=head; }
 		else {
 			tail.setNext(newNode);
-			tail=tail.getNext();
+			newNode.setPrevious(tail);
+			tail=newNode;
 		}
-		
 		currentSize++;
 	}
 

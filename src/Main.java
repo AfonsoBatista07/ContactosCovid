@@ -226,7 +226,7 @@ public class Main {
 	 * @param csys - CovidSystem
 	 */
 	private static void listContacts(Scanner in, CovidSystem csys) {
-		String login = in.nextLine().trim().toUpperCase();
+		String login = in.next().toUpperCase();
 		in.nextLine();
 		try {
 			Iterator<User> it = csys.listContacts(login); 
