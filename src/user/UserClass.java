@@ -7,6 +7,11 @@ import group.Group;
 import message.Message;
 import user.exceptions.*;
 
+/**
+ * Implements a User.
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class UserClass implements User, Comparable<User> {
 	private String name, profession, address, login;
 	private int age, numGroups;
@@ -15,12 +20,15 @@ public class UserClass implements User, Comparable<User> {
 	private List<Message> feed;
 	private static int MAXGROUPS = 10;
 	
-	/**
-	 * The groups TAD could be and array with just 10 elements, or a DLL or array ask the teacher about this shit
-	 * MAXGroups isnt being verified
-	 * 
-	 */
 	
+	/**
+	 * Constructor of UserClass, initializes variables.
+	 * @param login - User login
+	 * @param name - User name
+	 * @param age - User gae
+	 * @param address - User address
+	 * @param profession - User profession
+	 */
 	public UserClass(String login, String name, int age , String address, String profession ) {
 		this.login = login;
 		this.name = name;
@@ -69,7 +77,7 @@ public class UserClass implements User, Comparable<User> {
 	
 	public void addGroup(Group group) {
 		if(inGroup(group)) throw new UserAlreadyInGroupException();
-		if(numGroups == 10) throw new UserMaxedGroupsException();
+		if(numGroups == MAXGROUPS) throw new UserMaxedGroupsException();
 		groups.addLast(group);
 		numGroups++;
 	}

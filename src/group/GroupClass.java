@@ -8,12 +8,22 @@ import dataStructures.OrderedSequenceClass;
 import message.Message;
 import user.User;
 
+/**
+ * Implements a Group.
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class GroupClass implements Group, Comparable<Group>{
 	
 	private String name, description;
 	private OrderedSequence<User> members;
 	private List<Message> messages;
 	
+	/**
+	 * Constructos of GroupClass, initializes variable.
+	 * @param name - Group name
+	 * @param description - Group description
+	 */
 	public GroupClass(String name, String description) {
 		this.name = name;
 		this.description = description;
