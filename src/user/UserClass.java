@@ -1,5 +1,7 @@
 package user;
 
+import covidSystem.exceptions.NoFriendMessagesException;
+import covidSystem.exceptions.UserNoContactsException;
 import dataStructures.*;
 import group.Group;
 import message.Message;
@@ -7,8 +9,8 @@ import user.exceptions.*;
 
 public class UserClass implements User, Comparable<User> {
 	private String name, profession, address, login;
-	private int age;
-	private OrderedSequence<Group> groups;
+	private int age, numGroups;
+	private List<Group> groups;
 	private OrderedSequence<User> contacts;
 	private List<Message> feed;
 	private static int MAXGROUPS = 10;
@@ -25,7 +27,8 @@ public class UserClass implements User, Comparable<User> {
 		this.age = age;
 		this.profession = profession;
 		this.address = address;
-		groups = new OrderedSequenceClass<Group>();
+		numGroups = 0;
+		groups = new DoublyLinkedList<Group>();
 		contacts = new OrderedSequenceClass<User>();
 		feed = new DoublyLinkedList<Message>();
 	}
@@ -66,12 +69,15 @@ public class UserClass implements User, Comparable<User> {
 	
 	public void addGroup(Group group) {
 		if(inGroup(group)) throw new UserAlreadyInGroupException();
-		groups.insert(group);
+		if(numGroups == 10) throw new UserMaxedGroupsException();
+		groups.addLast(group);
+		numGroups++;
 	}
 	
 	public void removeGroup(Group group) {
 		if(!inGroup(group)) throw new UserIsntInGroupException();
 		groups.remove(group);
+		numGroups--;
 	}
 	
 	public void recieveMessage(Message message) {
@@ -97,6 +103,6 @@ public class UserClass implements User, Comparable<User> {
 	}
 	
 	public boolean inGroup(Group group) {
-		return groups.contains(group);
+		return groups.find(group) != -1;
 	}
 }
