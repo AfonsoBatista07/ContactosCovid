@@ -144,13 +144,12 @@ public class CovidSystemClass implements CovidSystem {
 	 */
 	private User getUser(String login) throws UserDoesntExistException {
 		Iterator<User> it = users.iterator();
-		User user=null; boolean found=false;
-		while(it.hasNext() && !found) {
+		User user=null;
+		while(it.hasNext()) {
 			user = it.next();
-			if(user.getLogin().equals(login)) found=true; 
+			if(user.getLogin().equals(login)) return user; 
 		}
-		if(!found) throw new UserDoesntExistException();
-		return user;
+		throw new UserDoesntExistException();
 	}
 	
 	/**
@@ -161,13 +160,12 @@ public class CovidSystemClass implements CovidSystem {
 	private Group getGroup(String groupName) throws GroupDoesntExistException {
 		
 		Iterator<Group> it = groups.iterator();
-		Group group=null; boolean found=false;
-		while(it.hasNext() && !found) {
+		Group group=null;
+		while(it.hasNext()) {
 			group = it.next();
-			if(group.getName().equals(groupName)) found=true; 
+			if(group.getName().equals(groupName)) return group; 
 		}
-		if(!found) throw new GroupDoesntExistException();
-		return group;
+		throw new GroupDoesntExistException();
 	}
 	
 	/**
