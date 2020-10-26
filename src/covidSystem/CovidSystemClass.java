@@ -137,26 +137,45 @@ public class CovidSystemClass implements CovidSystem {
 		return it;
 	}
 	
-	// ns se se pode meter a exception assim mas ya
+	/**
+	 * @param login - The user login.
+	 * @return The user wanted.
+	 * @throws UserDoesntExistException
+	 */
 	private User getUser(String login) throws UserDoesntExistException {
 		User fakeUser = new UserClass(login, null, 0, null, null);
-		User realUser = users.get(fakeUser);
+		User realUser = users.get(fakeUser);											//TODO melhor isto ou iterator?
 		if(realUser == null) throw new UserDoesntExistException();
 		return realUser;
 	}
 	
-	private Group getGroup(String group) throws GroupDoesntExistException {
-		Group fakeGroup = new GroupClass(group, null);
+	/**
+	 * @param group - The group name.
+	 * @return The group wanted.
+	 * @throws GroupDoesntExistException - if the group with <groupName> doesn't exist.
+	 */
+	private Group getGroup(String groupName) throws GroupDoesntExistException {
+		Group fakeGroup = new GroupClass(groupName, null);
 		Group realGroup = groups.get(fakeGroup);
 		if(realGroup == null) throw new GroupDoesntExistException();
 		return realGroup;
 	}
 	
+	/**
+	 * Send a <message> to all the user groups.
+	 * @param itGroups - Iterator to all the user groups.
+	 * @param message - The message to send to all.
+	 */
 	private void sendToGroups(Iterator<Group> itGroups, Message message) {
 		while(itGroups.hasNext())
 			itGroups.next().recieveMessage(message);
 	}
 	
+	/**
+	 * Send a <message> to all the user contacts.
+	 * @param itContacs - Iterator to all the user contacts.
+	 * @param message - The message to send to all.
+	 */
 	private void sendToContacts(Iterator<User> itContacs, Message message) {
 		while(itContacs.hasNext())
 			itContacs.next().recieveMessage(message);

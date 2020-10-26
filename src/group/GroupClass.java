@@ -1,6 +1,5 @@
 package group;
 
-import covidSystem.exceptions.GroupIsEmptyException;
 import dataStructures.DoublyLinkedList;
 import dataStructures.Iterator;
 import dataStructures.List;
