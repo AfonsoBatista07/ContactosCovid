@@ -46,7 +46,7 @@ public class Main {
  	private static final String SUCCESS_REMOVE_GROUP_USER = "Remocao de aderencia executada."; 
  	private static final String SUCCESS_LIST_GROUP_USERS = "%s %s\n"; 
  	private static final String SUCCESS_NEW_MESSAGE = "Registo de mensagem executado."; 
- 	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n";
+ 	private static final String SUCCESS_LIST_MESSAGES = "%s\n%s\n%s\n\n";
  	private static final String SUCCESS_EXIT = "Obrigado. Ate a proxima."; 
  	 
  	/* Error Constants */ 
@@ -389,7 +389,7 @@ public class Main {
 			while(it.hasNext()) {
 				message = it.next();
 				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
-				if(it.hasNext()) System.out.print("\n");
+				//if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -415,7 +415,7 @@ public class Main {
 			while(it.hasNext()) {
 				message = it.next();
 				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
-				if(it.hasNext()) System.out.print("\n");
+				//if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);

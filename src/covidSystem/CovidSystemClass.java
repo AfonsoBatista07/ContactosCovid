@@ -143,22 +143,31 @@ public class CovidSystemClass implements CovidSystem {
 	 * @throws UserDoesntExistException - If the user with <login> doesn't exist.
 	 */
 	private User getUser(String login) throws UserDoesntExistException {
-		User fakeUser = new UserClass(login, null, 0, null, null);
-		User realUser = users.get(fakeUser);											//TODO melhor isto ou iterator?
-		if(realUser == null) throw new UserDoesntExistException();
-		return realUser;
+		Iterator<User> it = users.iterator();
+		User user=null; boolean found=false;
+		while(it.hasNext() && !found) {
+			user = it.next();
+			if(user.getLogin().equals(login)) found=true; 
+		}
+		if(!found) throw new UserDoesntExistException();
+		return user;
 	}
 	
 	/**
 	 * @param group - The group name.
 	 * @return The group wanted.
-	 * @throws GroupDoesntExistException - if the group with <groupName> doesn't exist.
+	 * @throws GroupDoesntExistException - If the group with <groupName> doesn't exist.
 	 */
 	private Group getGroup(String groupName) throws GroupDoesntExistException {
-		Group fakeGroup = new GroupClass(groupName, null);
-		Group realGroup = groups.get(fakeGroup);
-		if(realGroup == null) throw new GroupDoesntExistException();
-		return realGroup;
+		
+		Iterator<Group> it = groups.iterator();
+		Group group=null; boolean found=false;
+		while(it.hasNext() && !found) {
+			group = it.next();
+			if(group.getName().equals(groupName)) found=true; 
+		}
+		if(!found) throw new GroupDoesntExistException();
+		return group;
 	}
 	
 	/**
