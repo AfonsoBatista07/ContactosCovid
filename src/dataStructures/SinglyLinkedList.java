@@ -80,11 +80,9 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public int find(E element) {
-		boolean found = false;
 		int i=0;
-		while(i<currentSize && !found) {
+		while(i<currentSize) {
 			if(get(i).equals(element)) {
-				found = true;
 				return i;
 			} 
 			i++;

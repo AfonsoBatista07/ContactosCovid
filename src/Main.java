@@ -51,6 +51,7 @@ public class Main {
  	 
  	/* Error Constants */ 
  	private static final String ERROR_USER_ALREADY_EXIST = "Utilizador ja existente."; 
+ 	private static final String ERROR_USER_MAXED_GROUPS = "Utilizador atingio o numero maximo de users."; 
  	private static final String ERROR_USER_DOESNT_EXIST = "Inexistencia do utilizador referido."; 
  	private static final String ERROR_USERS_ALREADY_FRIENDS = "Existencia do contacto referido."; 
  	private static final String ERROR_USERS_ARENT_FRIENDS = "Inexistencia do contacto referido."; 
@@ -309,6 +310,8 @@ public class Main {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);
 		} catch(UserAlreadyInGroupException e) {
 			System.out.println(ERROR_USER_ALREADY_IN_GROUP);
+		} catch(UserMaxedGroupsException e) {
+			System.out.println(ERROR_USER_MAXED_GROUPS);
 		}
 	}
 	
