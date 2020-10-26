@@ -140,7 +140,7 @@ public class CovidSystemClass implements CovidSystem {
 	/**
 	 * @param login - The user login.
 	 * @return The user wanted.
-	 * @throws UserDoesntExistException
+	 * @throws UserDoesntExistException - If the user with <login> doesn't exist.
 	 */
 	private User getUser(String login) throws UserDoesntExistException {
 		User fakeUser = new UserClass(login, null, 0, null, null);
