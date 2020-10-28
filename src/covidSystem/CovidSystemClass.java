@@ -8,11 +8,19 @@ import user.exceptions.*;
 import covidSystem.exceptions.*;
 import group.exceptions.*;
 
+/**
+ * Implements a CovidSystem.
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class CovidSystemClass implements CovidSystem {
 	
 	List<User> users;
 	List<Group> groups;
 	
+	/**
+	 * Constructor of CovidSystemClass, initializes variables.
+	 */
 	public CovidSystemClass() {
 		users = new DoublyLinkedList<User>();
 		groups = new DoublyLinkedList<Group>();

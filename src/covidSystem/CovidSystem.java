@@ -7,6 +7,11 @@ import message.Message;
 import user.exceptions.*;
 import group.exceptions.*;
 
+/**
+ * Interface of the CovidSystemClass.
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public interface CovidSystem {
 	
 	/**
