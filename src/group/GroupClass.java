@@ -15,6 +15,12 @@ import user.User;
  */
 public class GroupClass implements Group, Comparable<Group>{
 	
+	/**
+	 * Decidimos utilizar uma OrderedSequence para guardar os Users pois e necessario estarem ordenados por ordem lexicografica para o comando 3.11.
+	 * Para armazenar as Messages usamos um DoublyLinkedList porque nao precisam de estar ordenadas
+	 * e tambem sentimos que a DLL seria mais eficiente do que a SinlyLinkedList na pesquisa e remocao dos elementos.
+	 */
+	
 	private String name, description;
 	private OrderedSequence<User> members;
 	private List<Message> messages;

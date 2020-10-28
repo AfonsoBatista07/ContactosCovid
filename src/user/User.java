@@ -98,7 +98,7 @@ public interface User extends Comparable<User> {
 	Iterator<Message> listMessages();
 	
 	/**
-	 * @return Iterator of the User GRoup
+	 * @return Iterator of the User Group
 	 */
 	Iterator<Group> listGroups();
 }

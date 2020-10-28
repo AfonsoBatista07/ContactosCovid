@@ -109,7 +109,7 @@ public interface CovidSystem {
 	
 	/**
 	 * @param groupName - Group name (its unique).
-	 * @return
+	 * @returnan Iterator with all the Users.
 	 * @throws UserDoesntExistException - If the wanted user doesn't exist.
 	 * @throws GroupIsEmptyException - If the group is empty.
 	 */

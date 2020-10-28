@@ -11,6 +11,13 @@ import user.exceptions.*;
  * @author Joao Jorge 57994
  */
 public class UserClass implements User, Comparable<User> {
+	
+	/**
+	 * Decidimos utilizar uma OrderedSequence para guardar os Users pois e necessario estarem ordenados por ordem lexicografica para o comando 3.5.
+	 * Para armazenar as Messages e os Grupos usamos uma DoublyLinkedList porque nao precisam de estar ordenados
+	 * e tambem sentimos que a DLL seria mais eficiente do que a SinlyLinkedList na pesquisa e remocao dos elementos.
+	 */
+	
 	private String name, profession, address, login;
 	private int age, numGroups;
 	private List<Group> groups;
