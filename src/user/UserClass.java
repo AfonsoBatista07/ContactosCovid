@@ -1,7 +1,5 @@
 package user;
 
-import covidSystem.exceptions.NoFriendMessagesException;
-import covidSystem.exceptions.UserNoContactsException;
 import dataStructures.*;
 import group.Group;
 import message.Message;
