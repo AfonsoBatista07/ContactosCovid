@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 import covidSystem.*;
-import user.User;
-import message.Message;
-import group.Group;
+import user.*;
+import message.*;
+import group.*;
 import covidSystem.exceptions.*;
-import dataStructures.Iterator;
+import dataStructures.*;
 import user.exceptions.*;
 import group.exceptions.*;
  
@@ -392,7 +392,6 @@ public class Main {
 			while(it.hasNext()) {
 				message = it.next();
 				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
-				//if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(UserDoesntExistException e) {
 			System.out.println(ERROR_USER_DOESNT_EXIST);
@@ -418,7 +417,6 @@ public class Main {
 			while(it.hasNext()) {
 				message = it.next();
 				System.out.printf(SUCCESS_LIST_MESSAGES, message.getTitle(), message.getText(), message.getUrl());
-				//if(it.hasNext()) System.out.print("\n");
 			}
 		} catch(GroupDoesntExistException e) {
 			System.out.println(ERROR_GROUP_DOESNT_EXIST);

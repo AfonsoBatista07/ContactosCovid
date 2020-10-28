@@ -23,7 +23,7 @@ public class UserClass implements User, Comparable<User> {
 	 * Constructor of UserClass, initializes variables.
 	 * @param login - User login
 	 * @param name - User name
-	 * @param age - User gae
+	 * @param age - User age
 	 * @param address - User address
 	 * @param profession - User profession
 	 */
