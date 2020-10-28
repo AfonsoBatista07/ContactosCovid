@@ -16,7 +16,7 @@ import group.exceptions.*;
 public class CovidSystemClass implements CovidSystem {
 	
 	/**
-	 * Decidimos usar uma DoublyLinkedList para armazenar os Users e os Groups porque estes não precisam de estar ordenados
+	 * Decidimos usar uma DoublyLinkedList para armazenar os Users e os Groups porque estes nao precisam de estar ordenados
 	 * e tambem sentimos que a DLL seria mais eficiente do que a SinlyLinkedList na pesquisa e remocao dos elementos.
 	 */
 	
