@@ -23,7 +23,7 @@ public class CovidSystemClass implements CovidSystem {
 			throws UserAlreadyExistException {
 		
 		User newUser = new UserClass(login, name, age, address, profession);
-		if(users.get(newUser)!=null) throw new UserAlreadyExistException();							//TODO acho que é bad codings estar a criar um objecto sem saber se ele já existe
+		if(users.get(newUser)!=null) throw new UserAlreadyExistException();			
 		users.insert(newUser);																				
 	}
 
