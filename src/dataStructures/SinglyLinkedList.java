@@ -74,7 +74,6 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public Iterator<E> iterator() throws NoElementException {
-		if(isEmpty()) throw new NoElementException();
 		return new SinglyLLIterator<E>(head);
 	}
 
@@ -118,23 +117,24 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public void addFirst(E element) {
-		SListNode<E> newNode = new SListNode<E>(element,head);
-		
+		SListNode<E> newNode = new SListNode<E>(element);
 		if(!isEmpty()) { 
-			newNode.setNext(head); head=newNode;
-		} else { tail=head; head=newNode; }
+			newNode.setNext(head);
+			head=newNode;
+		} else { head=newNode; tail=head;  }
 		currentSize++;
 		
 	}
 	
+	/**
+	 * Adds element to te given position ( position cannot be 0 or currentSize)
+	 * @param position - position
+	 * @param element - Element
+	 */
 	private void addMiddle(int position, E element) {
 		SListNode<E> newNode = new SListNode<E>(element);
-		SListNode<E> secondNode=head, firstNode=secondNode;
-		for(int i=0; i<position; i++) {
-			secondNode=secondNode.getNext();
-			if(i==position-1)
-				firstNode=secondNode;
-		}
+		SListNode<E> firstNode = getNode(position-1);
+		SListNode<E> secondNode = firstNode.getNext();
 		newNode.setNext(secondNode);
 		firstNode.setNext(newNode);
 		currentSize++;
@@ -155,34 +155,38 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int position, E element) throws InvalidPositionException {
-		if(position<0 && position>=size()) throw new InvalidPositionException();
+		if(position<0 && position>=currentSize) throw new InvalidPositionException();
 		if(position==0) addFirst(element);
 		else if(position==currentSize) addLast(element);
 		else addMiddle(position, element);
-		
-		
 	}
 
 	@Override
 	public E removeFirst() throws NoElementException {
 		if(isEmpty()) throw new NoElementException();
-		
-		SListNode<E> nextNode = head.getNext();
 		E element = head.getElement();
-		head=nextNode;
+		if(currentSize == 1) {
+			head = null;
+			tail = null;
+		}
+		else {
+			SListNode<E> nextNode = head.getNext();
+			head=nextNode;
+		}
 		currentSize--;
 		return element;
 	}
 	
+	/**
+	 * Removes element to te given position ( position cannot be 0 or currentSize)
+	 * @param position - position
+	 * @return Element removed
+	 */
 	private E removeMiddle(int position) {
-		SListNode<E> thirdNode=head, secondNode=thirdNode, firstNode=thirdNode;
-		for(int i=0; i<position+1; i++) {
-			thirdNode=thirdNode.getNext();
-			if(i==position-1)
-				firstNode=thirdNode;
-			else if(i==position)
-				secondNode=thirdNode;
-		}
+		SListNode<E> firstNode = getNode(position -1);
+		SListNode<E> secondNode = firstNode.getNext();
+		SListNode<E> thirdNode = secondNode.getNext();
+		
 		E element = secondNode.getElement();
 		firstNode.setNext(thirdNode);
 		currentSize--;
@@ -192,22 +196,22 @@ public class SinglyLinkedList<E> implements List<E> {
 	@Override
 	public E removeLast() throws NoElementException {
 		if(isEmpty()) throw new NoElementException();
-		
-		SListNode<E> node=head;
-		for(int i=0; i<currentSize; i++) {
-			node=node.getNext();
-		}
 		E element = tail.getElement();
-		node.setNext(null);
-		tail=node;
+		if(currentSize == 1) {
+			head = null;
+			tail = null;
+		} else {
+			SListNode<E> secondLast = getNode(currentSize-2);
+			secondLast.setNext(null);
+			tail = secondLast;
+		}
 		currentSize--;
-		
 		return element;
 	}
 
 	@Override
 	public E remove(int position) throws InvalidPositionException {
-		if(position<0 && position>=size()) throw new InvalidPositionException();
+		if(position<0 && position>=currentSize) throw new InvalidPositionException();
 		if(position==0) return removeFirst();
 		else if(position==currentSize) return removeLast();
 		else return removeMiddle(position);

@@ -33,22 +33,21 @@ public class SinglyLLIterator<E> implements Iterator<E> {
         this.rewind();
     }  
 	
-	@Override
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
+    public boolean hasNext() {
+		return nextToReturn != null;
 	}
 
 	@Override
 	public E next() throws NoSuchElementException {
-		// TODO Auto-generated method stub
-		return null;
+		if(!hasNext()) throw new NoSuchElementException();
+		E element = nextToReturn.getElement();
+		nextToReturn = nextToReturn.getNext();
+		return element;
 	}
 
 	@Override
 	public void rewind() {
-		// TODO Auto-generated method stub
-
+		nextToReturn = firstNode;
 	}
 
 }

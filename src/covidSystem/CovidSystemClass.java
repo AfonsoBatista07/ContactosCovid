@@ -10,33 +10,35 @@ import group.exceptions.*;
 
 public class CovidSystemClass implements CovidSystem {
 	
-	OrderedSequence<User> users;
-	OrderedSequence<Group> groups;
+	List<User> users;
+	List<Group> groups;
 	
 	public CovidSystemClass() {
-		users = new OrderedSequenceClass<User>();
-		groups = new OrderedSequenceClass<Group>();
+		users = new DoublyLinkedList<User>();
+		groups = new DoublyLinkedList<Group>();
 	}
 
 	@Override
 	public void insertUser(String login, String name, int age, String address, String profession)
 			throws UserAlreadyExistException {
 		
+		if(getUser(login)!=null) throw new UserAlreadyExistException();
 		User newUser = new UserClass(login, name, age, address, profession);
-		if(users.get(newUser)!=null) throw new UserAlreadyExistException();			
-		users.insert(newUser);																				
+		users.addLast(newUser);																				
 	}
 
 	@Override
 	public User showUser(String login) throws UserDoesntExistException {
-		return getUser(login);
+		User user = getUser(login);
+		if(user == null) throw new UserDoesntExistException();
+		return user;
 	}
 
 	@Override
 	public void insertContact(String login1, String login2)
 			throws UserDoesntExistException, UsersAlreadyFriendsException {
 		
-		User user1 = getUser(login1); User user2 = getUser(login2);
+		User user1 = showUser(login1); User user2 = showUser(login2);
 		user1.newContact(user2); user2.newContact(user1);
 	}
 
@@ -44,7 +46,7 @@ public class CovidSystemClass implements CovidSystem {
 	public void removeContact(String login1, String login2)
 			throws UserDoesntExistException, UserNotFriendException, SameUserException {
 		
-		User user1 = getUser(login1); User user2 = getUser(login2);
+		User user1 = showUser(login1); User user2 = showUser(login2);
 		if(login1.equals(login2)) throw new SameUserException();
 		
 		user1.removeContact(user2); user2.removeContact(user1);
@@ -53,27 +55,28 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public Iterator<User> listContacts(String login) throws UserDoesntExistException, UserNoContactsException {
-		Iterator<User> it = getUser(login).listContacts();
+		Iterator<User> it = showUser(login).listContacts();
 		if(!it.hasNext()) throw new UserNoContactsException();
 		return it;
 	}
 
 	@Override
 	public void insertGroup(String group, String description) throws GroupAlreadyExistsException {
+		if(getGroup(group)!=null) throw new GroupAlreadyExistsException();
 		Group newGroup = new GroupClass(group, description);
-		if(groups.get(newGroup)!=null) throw new GroupAlreadyExistsException();
-		
-		groups.insert(newGroup);
+		groups.addLast(newGroup);
 	}
 
 	@Override
 	public Group showGroup(String group) throws GroupDoesntExistException {
-		return getGroup(group);
+		Group Objgroup = getGroup(group);
+		if(Objgroup == null) throw new GroupDoesntExistException();
+		return Objgroup;
 	}
 
 	@Override
 	public void removeGroup(String group) throws GroupDoesntExistException {
-		Group objGroup = getGroup(group);
+		Group objGroup = showGroup(group);
 		Iterator<User> it = objGroup.listMembers();
 		while(it.hasNext()) {
 			it.next().removeGroup(objGroup);
@@ -84,20 +87,20 @@ public class CovidSystemClass implements CovidSystem {
 	@Override
 	public void subscribeGroup(String login, String group)
 			throws UserDoesntExistException, GroupDoesntExistException, UserAlreadyInGroupException {
-		User user = getUser(login); Group objGroup = getGroup(group);
+		User user = showUser(login); Group objGroup = showGroup(group);
 		user.addGroup(objGroup); objGroup.addMember(user);
 	}
 
 	@Override
 	public void removeSubscription(String login, String group)
 			throws UserDoesntExistException, GroupDoesntExistException, UserIsntInGroupException {
-		User user = getUser(login); Group objGroup = getGroup(group);
+		User user = showUser(login); Group objGroup = showGroup(group);
 		user.removeGroup(objGroup); objGroup.removeMember(user);
 	}
 
 	@Override
 	public Iterator<User> listParticipants(String group) throws GroupDoesntExistException, GroupIsEmptyException {
-		Iterator<User> it = getGroup(group).listMembers();
+		Iterator<User> it = showGroup(group).listMembers();
 		if(!it.hasNext()) throw new GroupIsEmptyException();
 		return it;
 	}
@@ -105,7 +108,7 @@ public class CovidSystemClass implements CovidSystem {
 	@Override
 	public void insertMessage(String login, String title, String text, String url) throws UserDoesntExistException {
 		Message message = new MessageClass(title, text, url);
-		User user = getUser(login);
+		User user = showUser(login);
 		user.recieveMessage(message);
 		Iterator<Group> itGroups = user.listGroups(); sendToGroups(itGroups, message);
 		Iterator<User> itContacts = user.listContacts(); sendToContacts(itContacts, message);
@@ -115,7 +118,7 @@ public class CovidSystemClass implements CovidSystem {
 	@Override
 	public Iterator<Message> listContactMessages(String login1, String login2) throws UserDoesntExistException,
 			UserNotFriendException, NoFriendMessagesException {
-		User user1 = getUser(login1); User user2 = getUser(login2);
+		User user1 = showUser(login1); User user2 = showUser(login2);
 		if(!user1.isContact(user2)) throw new UserNotFriendException();
 		
 		Iterator<Message> it = user1.listMessages();
@@ -127,8 +130,8 @@ public class CovidSystemClass implements CovidSystem {
 	@Override
 	public Iterator<Message> listGroupMessages(String group, String login) throws GroupDoesntExistException,
 			UserDoesntExistException, UserIsntInGroupException, NoGroupMessagesException {
-		Group objGroup = getGroup(group);
-		User user = getUser(login);
+		Group objGroup = showGroup(group);
+		User user = showUser(login);
 		if(!user.inGroup(objGroup)) throw new UserIsntInGroupException();
 		
 		Iterator<Message> it = objGroup.listMessages();
@@ -142,30 +145,29 @@ public class CovidSystemClass implements CovidSystem {
 	 * @return The user wanted.
 	 * @throws UserDoesntExistException - If the user with <login> doesn't exist.
 	 */
-	private User getUser(String login) throws UserDoesntExistException {
+	private User getUser(String login) {
 		Iterator<User> it = users.iterator();
 		User user=null;
 		while(it.hasNext()) {
 			user = it.next();
 			if(user.getLogin().equals(login)) return user; 
 		}
-		throw new UserDoesntExistException();
+		return null;
 	}
-	
+
 	/**
 	 * @param group - The group name.
 	 * @return The group wanted.
 	 * @throws GroupDoesntExistException - If the group with <groupName> doesn't exist.
 	 */
 	private Group getGroup(String groupName) throws GroupDoesntExistException {
-		
 		Iterator<Group> it = groups.iterator();
 		Group group=null;
 		while(it.hasNext()) {
 			group = it.next();
 			if(group.getName().equals(groupName)) return group; 
 		}
-		throw new GroupDoesntExistException();
+		return null;
 	}
 	
 	/**
