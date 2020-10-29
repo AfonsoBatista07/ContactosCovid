@@ -76,7 +76,7 @@ public interface User extends Comparable<User> {
 	/**
 	 * Verifies if the user is a contact.
 	 * @param user - User
-	 * @return true if he is, false if not
+	 * @return true if he is, false if not.
 	 */
 	boolean isContact(User user);
 	
@@ -98,7 +98,7 @@ public interface User extends Comparable<User> {
 	Iterator<Message> listMessages();
 	
 	/**
-	 * @return Iterator of the User Group
+	 * @return Iterator of the User Group.
 	 */
 	Iterator<Group> listGroups();
 }
