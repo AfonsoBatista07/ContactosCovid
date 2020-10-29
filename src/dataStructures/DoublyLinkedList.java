@@ -122,11 +122,11 @@ public class DoublyLinkedList<E> implements List<E>  {
 	private DListNode<E> getNode(int position) {
 		DListNode<E> newNode;
 		
-		if(position<=currentSize/2) {             			    //Se estiver mais perto da head
+		if(position<=currentSize/2) {
 			newNode=head;
 			for(int i=1;i<=position;i++)
 				newNode=newNode.getNext();
-		} else {                                                 //Se estiver mais perto da tail
+		} else {
 			newNode=tail;
 			for(int i=currentSize-2;i>=position;i--)
 				newNode=newNode.getPrevious();
@@ -246,7 +246,6 @@ public class DoublyLinkedList<E> implements List<E>  {
         return element;
     }
     
-    // E NECESSARIO FAZER NODE = NULL
     /**
      * Removes the specified node from the list.
      * Pre-condition: the node is neither the head nor the tail of the list.
