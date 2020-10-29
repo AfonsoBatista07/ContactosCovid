@@ -35,7 +35,7 @@ implements OrderedSequence<E> {
 	}
 
 	@Override
-	// Das um elemento que não existe e devolve um que existe mas que tem as mesmas carateristicas
+	// Das um elemento que nao existe e devolve um que existe mas que tem as mesmas carateristicas
 	public E get(E element) {
 		Iterator<E> it = iterator();
 		while(it.hasNext()) {

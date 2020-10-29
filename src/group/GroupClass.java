@@ -26,7 +26,7 @@ public class GroupClass implements Group, Comparable<Group>{
 	private List<Message> messages;
 	
 	/**
-	 * Constructos of GroupClass, initializes variable.
+	 * Constructs of GroupClass, initializes variable.
 	 * @param name - Group name
 	 * @param description - Group description
 	 */
