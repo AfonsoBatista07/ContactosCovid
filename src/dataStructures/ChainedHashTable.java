@@ -1,0 +1,136 @@
+package dataStructures;  
+
+/**
+ * Chained Hash table implementation
+ * @author AED  Team
+ * @version 1.0
+ * @param <K> Generic Key, must extend comparable
+ * @param <V> Generic Value 
+ */
+
+public class ChainedHashTable<K extends Comparable<K>, V> 
+    extends HashTable<K,V> 
+{ 
+	//The array of dictionaries.
+    protected Dictionary<K,V>[] table;
+
+
+    /**
+     * Constructor of an empty chained hash table,
+     * with the specified initial capacity.
+     * Each position of the array is initialized to a new ordered list
+     * maxSize is initialized to the capacity.
+     * @param capacity defines the table capacity.
+     */
+    @SuppressWarnings("unchecked")
+    public ChainedHashTable( int capacity )
+    {
+        int arraySize = HashTable.nextPrime((int) (1.1 * capacity));
+        // Compiler gives a warning.
+        table = (Dictionary<K,V>[]) new Dictionary[arraySize];
+        for ( int i = 0; i < arraySize; i++ )
+            table[i] = new CollisionList<K,V>();
+        maxSize = capacity;
+        currentSize = 0;
+    }                                      
+
+
+    public ChainedHashTable( )
+    {
+        this(DEFAULT_CAPACITY);
+    }                                                                
+
+    /**
+     * Returns the hash value of the specified key.
+     * @param key to be encoded
+     * @return hash value of the specified key
+     */
+    protected int hash( K key )
+    {
+        return Math.abs( key.hashCode() ) % table.length;
+    }
+
+    @Override
+    public V find( K key )
+    {
+    	return table[hash(key)].find(key);
+    }
+
+    @Override
+    public V insert( K key, V value )
+    {
+        if ( this.isFull() )
+            this.rehash();
+        
+        return table[hash(key)].insert(key, value);
+    }
+
+    @Override
+    public V remove( K key )
+    {
+    	return table[hash(key)].remove(key);
+    }
+
+    @Override
+    public Iterator<Entry<K,V>> iterator( )
+    {
+    	Dictionary<K, V> dic = new CollisionList<K,V>();
+    	for(int i = 0 ; i<table.length; i++) {
+    		Iterator<Entry<K,V>> it = table[i].iterator();
+    		while(it.hasNext()) {
+    			Entry<K,V> entry = it.next();
+    			dic.insert(entry.getKey(), entry.getValue());
+    		}
+    	}
+    	return dic.iterator();
+    }
+    // Caraca tudo fodido
+    public void rehash() {
+    	 int arraySize = HashTable.nextPrime((int) (1.1 * table.length));
+         // Compiler gives a warning.
+    	 Dictionary<K,V>[] table2 = new Dictionary[arraySize];
+         for ( int i = 0; i < arraySize; i++ )
+        	 table2[i] = new CollisionList<K,V>();
+         maxSize = table.length;
+         currentSize = 0;
+         
+         Iterator<Entry<K,V>> it = iterator();
+         table = table2;
+         while(it.hasNext()) {
+        	 Entry<K,V> entry = it.next();
+        	 insert(entry.getKey(), entry.getValue());
+         }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
