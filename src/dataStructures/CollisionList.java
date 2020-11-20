@@ -4,33 +4,6 @@ import dataStructures.DoublyLinkedList.DListNode;
 
 public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, V> {
 	
-	public class EntryClass<K, V> implements Entry<K, V> {
-
-	    private K key;
-	    private V value;
-
-	    public EntryClass(K key, V value) {
-	        this.key = key;
-	        this.value = value;
-	    }
-
-	    @Override
-	    public K getKey() {
-	        return key;
-	    }
-
-	    @Override
-	    public V getValue() {
-	        return value;
-	    }
-
-	    public void setValue(V value) {
-	        this.value = value;
-	    }
-
-	}
-	
-	
 	// Node at the head of the list.
 	private DListNode<Entry<K, V>> head;
 
