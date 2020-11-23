@@ -31,13 +31,15 @@ public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, 
 
 	@Override
 	public V find(K key) {
-		return findNode(key).getElement().getValue();
+		DListNode<Entry<K, V>> node = findNode(key);
+        if(node == null) return null;
+        return node.getElement().getValue();
 	}
 	
 	public DListNode<Entry<K, V>> findNode(K key) {
 		DListNode<Entry<K, V>> newNode=head;
 		Entry<K, V> entry;
-		while(!newNode.equals(null)) {
+		while(newNode!=null) {
 			entry = newNode.getElement();
 			if(entry.getKey().equals(key))
 				return newNode;

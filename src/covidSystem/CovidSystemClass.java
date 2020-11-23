@@ -20,15 +20,15 @@ public class CovidSystemClass implements CovidSystem {
 	 * e tambem sentimos que a DLL seria mais eficiente do que a SinlyLinkedList na pesquisa e remocao dos elementos.
 	 */
 	
-	List<User> users;
-	List<Group> groups;
+	HashTable<String, User> users;
+	HashTable<String, Group> groups;
 	
 	/**
 	 * Constructor of CovidSystemClass, initializes variables.
 	 */
 	public CovidSystemClass() {
-		users = new DoublyLinkedList<User>();
-		groups = new DoublyLinkedList<Group>();
+		users = new ChainedHashTable<String,User>();
+		groups = new ChainedHashTable<String,Group>();
 	}
 
 	@Override
@@ -159,13 +159,7 @@ public class CovidSystemClass implements CovidSystem {
 	 * @throws UserDoesntExistException - If the user with <login> doesn't exist.
 	 */
 	private User getUser(String login) {
-		Iterator<User> it = users.iterator();
-		User user=null;
-		while(it.hasNext()) {
-			user = it.next();
-			if(user.getLogin().equals(login)) return user; 
-		}
-		return null;
+		return users.find(login);
 	}
 
 	/**

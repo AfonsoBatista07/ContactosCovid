@@ -45,20 +45,17 @@ public class ChainedHashTable<K extends Comparable<K>, V>
      * @param key to be encoded
      * @return hash value of the specified key
      */
-    protected int hash( K key )
-    {
+    protected int hash( K key ) {
         return Math.abs( key.hashCode() ) % table.length;
     }
 
     @Override
-    public V find( K key )
-    {
+    public V find( K key ) {
     	return table[hash(key)].find(key);
     }
 
     @Override
-    public V insert( K key, V value )
-    {
+    public V insert( K key, V value ) {
         if ( this.isFull() )
             this.rehash();
         

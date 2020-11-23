@@ -6,6 +6,7 @@ public class Main {
 		map.insert(1, "Banana");
 		map.insert(19, "abacate");
 		map.insert(21, "yakusa");
+		System.out.println(map.find(2));
 		System.out.println(map.find(1));
 		Iterator<Entry<Integer,String>> it = map.iterator();
 		while(it.hasNext()) {
