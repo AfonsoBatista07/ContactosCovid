@@ -35,8 +35,7 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     }                                      
 
 
-    public ChainedHashTable( )
-    {
+    public ChainedHashTable() {
         this(DEFAULT_CAPACITY);
     }                                                                
 

@@ -37,7 +37,7 @@ public class CovidSystemClass implements CovidSystem {
 		
 		if(getUser(login)!=null) throw new UserAlreadyExistException();
 		User newUser = new UserClass(login, name, age, address, profession);
-		users.addLast(newUser);																				
+		users.insert(login, newUser);																				
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class CovidSystemClass implements CovidSystem {
 	public void insertGroup(String group, String description) throws GroupAlreadyExistsException {
 		if(getGroup(group)!=null) throw new GroupAlreadyExistsException();
 		Group newGroup = new GroupClass(group, description);
-		groups.addLast(newGroup);
+		groups.insert(group, newGroup);
 	}
 
 	@Override
@@ -89,12 +89,8 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public void removeGroup(String group) throws GroupDoesntExistException {
-		Group objGroup = showGroup(group);
-		Iterator<User> it = objGroup.listMembers();
-		while(it.hasNext()) {
-			it.next().removeGroup(objGroup);
-		}
-		groups.remove(objGroup);
+		if(getGroup(group)==null) throw new GroupDoesntExistException();
+		groups.remove(group);
 	}
 
 	@Override
@@ -158,7 +154,7 @@ public class CovidSystemClass implements CovidSystem {
 	 * @return The user wanted.
 	 * @throws UserDoesntExistException - If the user with <login> doesn't exist.
 	 */
-	private User getUser(String login) {
+	private User getUser(String login) throws UserDoesntExistException {
 		return users.find(login);
 	}
 
@@ -168,13 +164,7 @@ public class CovidSystemClass implements CovidSystem {
 	 * @throws GroupDoesntExistException - If the group with <groupName> doesn't exist.
 	 */
 	private Group getGroup(String groupName) throws GroupDoesntExistException {
-		Iterator<Group> it = groups.iterator();
-		Group group=null;
-		while(it.hasNext()) {
-			group = it.next();
-			if(group.getName().equals(groupName)) return group; 
-		}
-		return null;
+		return groups.find(groupName);
 	}
 	
 	/**

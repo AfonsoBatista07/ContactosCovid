@@ -20,7 +20,7 @@ public class UserClass implements User, Comparable<User> {
 	
 	private String name, profession, address, login;
 	private int age, numGroups;
-	private List<Group> groups;
+	private HashTable<String, Group> groups;
 	private OrderedSequence<User> contacts;
 	private List<Message> feed;
 	private static int MAXGROUPS = 10;
@@ -41,7 +41,7 @@ public class UserClass implements User, Comparable<User> {
 		this.profession = profession;
 		this.address = address;
 		numGroups = 0;
-		groups = new DoublyLinkedList<Group>();
+		groups = new ChainedHashTable<String, Group>(10);
 		contacts = new OrderedSequenceClass<User>();
 		feed = new DoublyLinkedList<Message>();
 	}
@@ -83,13 +83,13 @@ public class UserClass implements User, Comparable<User> {
 	public void addGroup(Group group) {
 		if(inGroup(group)) throw new UserAlreadyInGroupException();
 		if(numGroups == MAXGROUPS) throw new UserMaxedGroupsException();
-		groups.addLast(group);
+		groups.insert(group.getName(), group);
 		numGroups++;
 	}
 	
 	public void removeGroup(Group group) {
 		if(!inGroup(group)) throw new UserIsntInGroupException();
-		groups.remove(group);
+		groups.remove(group.getName());
 		numGroups--;
 	}
 	
@@ -116,6 +116,6 @@ public class UserClass implements User, Comparable<User> {
 	}
 	
 	public boolean inGroup(Group group) {
-		return groups.find(group) != -1;
+		return groups.find(group.getName()) != null;
 	}
 }
