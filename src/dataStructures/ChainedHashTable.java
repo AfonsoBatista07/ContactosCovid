@@ -74,15 +74,7 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     @Override
     public Iterator<Entry<K,V>> iterator( )
     {
-    	Dictionary<K, V> dic = new CollisionList<K,V>();
-    	for(int i = 0 ; i<table.length; i++) {
-    		Iterator<Entry<K,V>> it = table[i].iterator();
-    		while(it.hasNext()) {
-    			Entry<K,V> entry = it.next();
-    			dic.insert(entry.getKey(), entry.getValue());
-    		}
-    	}
-    	return dic.iterator();
+    	return new IteratorHashTable<K,V>(table);
     }
     // Caraca tudo fodido
     public void rehash() {
