@@ -31,7 +31,7 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 			pos++;
 			Iterator<Entry<K,V>> it = table[pos].iterator();
 			if(it.hasNext()) {    													// BETTER CODING !!!!!!!!!!!!!!!!!!!!!!1
-				returnNext= it.next();
+				next= it.next();
 				iterator = it;
 				return returnNext;
 			}
