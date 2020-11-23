@@ -3,6 +3,7 @@ package dataStructures;
 public class Main {
 	public static void main(String[] args) { 
 		HashTable<Integer, String> map = new ChainedHashTable<Integer, String>(3);
+		map.insert(1, "Laranja");
 		map.insert(1, "Banana");
 		map.insert(19, "abacate");
 		map.insert(21, "yakusa");

@@ -84,6 +84,7 @@ class DoublyLLIterator<E> implements TwoWayIterator<E>
 
 
     @Override
+    // falta mudar o prevToReturn
     public E next( ) throws NoSuchElementException
     {
         if ( !this.hasNext() )
