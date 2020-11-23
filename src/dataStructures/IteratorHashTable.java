@@ -27,33 +27,31 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 			return returnNext;
 		}
 		while(pos<table.length-1) {
+			pos++;
 			Iterator<Entry<K,V>> it = table[pos].iterator();
 			if(it.hasNext()) {
 				next = it.next();
 				iterator = it;
 				return returnNext;
 			}
-			pos++;
 		}
 		next = null;
 		return returnNext;
 	}
 	
 	private Entry<K, V> getFirst() {
-		boolean found = false;
-		int i = pos;
 		Entry<K,V> returnNext = null;
-		while(i<table.length && !found) {
-			Iterator<Entry<K,V>> it = table[i].iterator();
+		while(pos<table.length) {
+			pos++;
+			Iterator<Entry<K,V>> it = table[pos].iterator();
 			if(it.hasNext()) {
 				returnNext = it.next();
 				iterator = it;
-				found = true;
+				return returnNext;
 			}
-			i++;
 		}
-		if(found) return returnNext;
-		return null;
+		next = null;
+		return returnNext;
 	}
 
 	@Override

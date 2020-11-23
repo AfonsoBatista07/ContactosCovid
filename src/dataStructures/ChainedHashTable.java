@@ -78,20 +78,19 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     }
     // Caraca tudo fodido
     public void rehash() {
-    	 int arraySize = HashTable.nextPrime((int) (1.1 * table.length));
-         // Compiler gives a warning.
-    	 Dictionary<K,V>[] table2 = new Dictionary[arraySize];
-         for ( int i = 0; i < arraySize; i++ )
-        	 table2[i] = new CollisionList<K,V>();
-         maxSize = table.length;
-         currentSize = 0;
-         
-         Iterator<Entry<K,V>> it = iterator();
-         table = table2;
-         while(it.hasNext()) {
-        	 Entry<K,V> entry = it.next();
-        	 insert(entry.getKey(), entry.getValue());
-         }
+    	Iterator<Entry<K, V>> it = iterator();
+		int arraySize = HashTable.nextPrime((int) 1.1 * table.length);
+		Dictionary<K,V>[] newTable = new Dictionary[arraySize];
+		
+		for ( int i = 0; i < arraySize; i++ )
+			newTable[i] = new CollisionList<K,V>();
+		
+		while(it.hasNext()) {
+			Entry<K,V> entry = it.next();
+			newTable[hash(entry.getKey())].insert(entry.getKey(), entry.getValue());
+		}
+		maxSize = table.length;
+		table = newTable;
     }
 }
 
