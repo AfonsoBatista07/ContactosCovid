@@ -42,18 +42,17 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 	}
 	
 	private Entry<K, V> getFirst() {
-		Entry<K,V> returnNext = null;
 		while(pos<table.length-1) {
 			pos++;
 			Iterator<Entry<K,V>> it = table[pos].iterator();
 			if(it.hasNext()) {
 				next = it.next();
 				iterator = it;
-				return returnNext;
+				return next;
 			}
 		}
 		next = null;
-		return returnNext;
+		return next;
 	}
 
 	@Override

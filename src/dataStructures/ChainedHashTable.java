@@ -75,7 +75,8 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     // Caraca tudo fodido
     public void rehash() {
     	Iterator<Entry<K, V>> it = iterator();
-		int arraySize = HashTable.nextPrime((int) 1.1 * table.length);
+    	maxSize = 2*maxSize;
+		int arraySize = HashTable.nextPrime((int) 1.1 * maxSize);
 		Dictionary<K,V>[] newTable = new Dictionary[arraySize];
 		
 		for ( int i = 0; i < arraySize; i++ )
@@ -85,7 +86,6 @@ public class ChainedHashTable<K extends Comparable<K>, V>
 			Entry<K,V> entry = it.next();
 			newTable[hash(entry.getKey())].insert(entry.getKey(), entry.getValue());
 		}
-		maxSize = table.length;
 		table = newTable;
     }
 }
