@@ -1,5 +1,6 @@
 package covidSystem;
 import covidSystem.exceptions.*;
+import dataStructures.Entry;
 import dataStructures.Iterator;
 import user.User;
 import group.Group;
@@ -60,7 +61,7 @@ public interface CovidSystem {
 	 * @throws UserDoesntExistException - If the wanted user doesn't exist.
 	 * @throws UserNoContactsException - If the user doesn't have any contacts.
 	 */
-	Iterator<User> listContacts(String login)
+	Iterator<Entry<String, User>> listContacts(String login) 
 			throws UserDoesntExistException, UserNoContactsException;
 	
 	/**
@@ -113,7 +114,7 @@ public interface CovidSystem {
 	 * @throws UserDoesntExistException - If the wanted user doesn't exist.
 	 * @throws GroupIsEmptyException - If the group is empty.
 	 */
-	Iterator<User> listParticipants(String groupName)
+	Iterator<Entry<String, User>> listParticipants(String groupName)
 			throws UserDoesntExistException, GroupIsEmptyException;
 	
 	/**

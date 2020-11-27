@@ -1,10 +1,6 @@
 package group;
 
-import dataStructures.DoublyLinkedList;
-import dataStructures.Iterator;
-import dataStructures.List;
-import dataStructures.OrderedSequence;
-import dataStructures.OrderedSequenceClass;
+import dataStructures.*;
 import message.Message;
 import user.User;
 
@@ -22,7 +18,7 @@ public class GroupClass implements Group, Comparable<Group>{
 	 */
 	
 	private String name, description;
-	private OrderedSequence<User> members;
+	private OrderedDictionary<String,User> members; 
 	private List<Message> messages;
 	
 	/**
@@ -33,7 +29,7 @@ public class GroupClass implements Group, Comparable<Group>{
 	public GroupClass(String name, String description) {
 		this.name = name;
 		this.description = description;
-		members = new OrderedSequenceClass<User>();
+		members = new BinarySearchTree<String, User>(); 
 		messages = new DoublyLinkedList<Message>();
 	}
 	
@@ -50,18 +46,18 @@ public class GroupClass implements Group, Comparable<Group>{
 	}
 	
 	public void addMember(User user) {
-		members.insert(user);
+		members.insert(user.getLogin(), user); 
 	}
 	
 	public void removeMember(User user) {
-		members.remove(user);
+		members.remove(user.getLogin()); 
 	}
 	
 	public void recieveMessage(Message message) {
 		messages.addFirst(message);
 	}
 	
-	public Iterator<User> listMembers() {
+	public Iterator<Entry<String, User>> listMembers() { 
 		return members.iterator();
 	}
 	

@@ -21,7 +21,7 @@ public class UserClass implements User, Comparable<User> {
 	private String name, profession, address, login;
 	private int age, numGroups;
 	private HashTable<String, Group> groups;
-	private OrderedSequence<User> contacts;
+	private OrderedDictionary<String,User> contacts;
 	private List<Message> feed;
 	private static int MAXGROUPS = 10;
 	
@@ -42,7 +42,7 @@ public class UserClass implements User, Comparable<User> {
 		this.address = address;
 		numGroups = 0;
 		groups = new ChainedHashTable<String, Group>(10);
-		contacts = new OrderedSequenceClass<User>();
+		contacts = new BinarySearchTree<String, User>();
 		feed = new DoublyLinkedList<Message>();
 	}
 	
@@ -72,12 +72,12 @@ public class UserClass implements User, Comparable<User> {
 	
 	public void newContact(User user) {
 		if(isContact(user) || user.compareTo(this) == 0) throw new UsersAlreadyFriendsException();
-		contacts.insert(user);
+		contacts.insert(user.getLogin(), user); 
 	}
 	
 	public void removeContact(User user) {
 		if(!isContact(user)) throw new UserNotFriendException();
-		contacts.remove(user);
+		contacts.remove(user.getLogin());
 	}
 	
 	public void addGroup(Group group) {
@@ -97,7 +97,7 @@ public class UserClass implements User, Comparable<User> {
 		feed.addFirst(message);
 	}
 	
-	public Iterator<User> listContacts() {
+	public Iterator<Entry<String, User>> listContacts() { 
 		return contacts.iterator();
 	}
 	
@@ -112,7 +112,7 @@ public class UserClass implements User, Comparable<User> {
 	public boolean isContact(User user) {
 		if(user.compareTo(this) == 0)
 			return true;
-		return contacts.contains(user);
+		return contacts.find(user.getLogin())!=null;
 	}
 	
 	public boolean inGroup(Group group) {

@@ -67,9 +67,9 @@ public class CovidSystemClass implements CovidSystem {
 	}
 
 	@Override
-	public Iterator<User> listContacts(String login) throws UserDoesntExistException, UserNoContactsException {
-		Iterator<User> it = showUser(login).listContacts();
-		if(!it.hasNext()) throw new UserNoContactsException();
+	public Iterator<Entry<String, User>> listContacts(String login) throws UserDoesntExistException, UserNoContactsException { 
+		Iterator<Entry<String, User>> it = showUser(login).listContacts(); 
+		if(!it.hasNext()) throw new UserNoContactsException(); 
 		return it;
 	}
 
@@ -89,8 +89,12 @@ public class CovidSystemClass implements CovidSystem {
 
 	@Override
 	public void removeGroup(String group) throws GroupDoesntExistException {
-		if(getGroup(group)==null) throw new GroupDoesntExistException();
-		groups.remove(group);
+		Group objGroup = showGroup(group); 
+		Iterator<Entry<String, User>> it = objGroup.listMembers(); 
+		while(it.hasNext()) { 
+			it.next().getValue().removeGroup(objGroup); 
+		} 
+		groups.remove(group); 
 	}
 
 	@Override
@@ -108,19 +112,19 @@ public class CovidSystemClass implements CovidSystem {
 	}
 
 	@Override
-	public Iterator<User> listParticipants(String group) throws GroupDoesntExistException, GroupIsEmptyException {
-		Iterator<User> it = showGroup(group).listMembers();
-		if(!it.hasNext()) throw new GroupIsEmptyException();
-		return it;
-	}
+	public Iterator<Entry<String, User>> listParticipants(String group) throws GroupDoesntExistException, GroupIsEmptyException { 
+		Iterator<Entry<String, User>> it = showGroup(group).listMembers(); 
+		if(!it.hasNext()) throw new GroupIsEmptyException(); 
+		return it; 
+	} 
 
 	@Override
 	public void insertMessage(String login, String title, String text, String url) throws UserDoesntExistException {
 		Message message = new MessageClass(title, text, url);
 		User user = showUser(login);
 		user.recieveMessage(message);
-		Iterator<Entry<String, Group>> itGroups = user.listGroups(); sendToGroups(itGroups, message);
-		Iterator<User> itContacts = user.listContacts(); sendToContacts(itContacts, message);
+		Iterator<Entry<String, Group>> itGroups = user.listGroups(); sendToGroups(itGroups, message); 
+		Iterator<Entry<String, User>> itContacts = user.listContacts(); sendToContacts(itContacts, message);
 		
 	}
 
@@ -172,18 +176,18 @@ public class CovidSystemClass implements CovidSystem {
 	 * @param itGroups - Iterator to all the user groups.
 	 * @param message - The message to send to all.
 	 */
-	private void sendToGroups(Iterator<Entry<String, Group>> itGroups, Message message) {
-		while(itGroups.hasNext())
-			itGroups.next().getValue().recieveMessage(message);
-	}
+	private void sendToGroups(Iterator<Entry<String, Group>> itGroups, Message message) { 
+		while(itGroups.hasNext()) 
+			itGroups.next().getValue().recieveMessage(message); 
+	} 
 	
 	/**
 	 * Send a <message> to all the user contacts.
 	 * @param itContacs - Iterator to all the user contacts.
 	 * @param message - The message to send to all.
 	 */
-	private void sendToContacts(Iterator<User> itContacs, Message message) {
-		while(itContacs.hasNext())
-			itContacs.next().recieveMessage(message);
-	}
+	private void sendToContacts(Iterator<Entry<String, User>> itContacs, Message message) { 
+		while(itContacs.hasNext()) 
+			itContacs.next().getValue().recieveMessage(message); 
+	} 
 }

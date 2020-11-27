@@ -10,29 +10,25 @@ public class StackInList<E> implements Stack<E>
     protected List<E> list;                     
 
 
-    public StackInList( )
-    {     
+    public StackInList( ) {     
         list = new DoublyLinkedList<E>();
     }
 
 
     // Returns true iff the stack contains no elements.
-    public boolean isEmpty( )
-    {     
+    public boolean isEmpty( ) {     
         return list.isEmpty();
     }
 
 
     // Returns the number of elements in the stack.
-    public int size( )
-    {     
+    public int size( ) {     
         return list.size();
     }
 
 
     // Returns the element at the top of the stack.
-    public E top( ) throws NoElementException 
-    {     
+    public E top( ) throws NoElementException {     
         if ( list.isEmpty() )
             throw new NoElementException();
         
@@ -41,15 +37,13 @@ public class StackInList<E> implements Stack<E>
 
 
     // Inserts the specified element onto the top of the stack.
-    public void push( E element )
-    { 
+    public void push( E element ) { 
         list.addFirst(element);
     }
 
 
     // Removes and returns the element at the top of the stack.
-    public E pop( ) throws NoElementException 
-    {     
+    public E pop( ) throws NoElementException {     
         if ( list.isEmpty() )
             throw new NoElementException();
 

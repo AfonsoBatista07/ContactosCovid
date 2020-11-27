@@ -29,7 +29,7 @@ public class BSTKeyOrderIterator<K,V> implements Iterator<Entry<K,V>> {
 		BSTNode<K,V> nextToReturn = next;
 		if(next.getRight() != null) {
 			next = leftMost(next.getRight());
-		}else {
+		} else {
 			if(stack.isEmpty())
 				next = null;
 			else
@@ -39,6 +39,7 @@ public class BSTKeyOrderIterator<K,V> implements Iterator<Entry<K,V>> {
 	}
 	
 	private BSTNode<K,V> leftMost(BSTNode<K,V> node) {
+		if(node == null) return null;
 		while(node != null) {
 			stack.push(node);
 			node = node.getLeft();

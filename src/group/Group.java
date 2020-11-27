@@ -1,5 +1,6 @@
 package group;
 
+import dataStructures.Entry;
 import dataStructures.Iterator;
 import message.Message;
 import user.User;
@@ -42,7 +43,7 @@ public interface Group extends Comparable<Group>{
 	/**
 	 * @return Iterator of the group members.
 	 */
-	Iterator<User> listMembers();
+	 Iterator<Entry<String, User>> listMembers();
 	
 	/**
 	 * @return Iterator of the group messages.

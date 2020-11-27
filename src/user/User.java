@@ -91,7 +91,7 @@ public interface User extends Comparable<User> {
 	/**
 	 * @return Iterator of the User Contacts.
 	 */
-	Iterator<User> listContacts();
+	Iterator<Entry<String, User>> listContacts(); 
 	
 	/**
 	 * @return Iterator of the User Messages.

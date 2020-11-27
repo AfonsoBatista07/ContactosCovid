@@ -56,11 +56,7 @@ public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, 
 		while(currentNode != null) {
 			
 			int currentKeyCompare = currentNode.getElement().getKey().compareTo(key);
-			
-			if(currentKeyCompare > 0) {
-				add(currentNode.getPrevious(), newNode);
-				return null;
-			} else if(currentKeyCompare == 0) {
+			if(currentKeyCompare == 0) {
 				V oldValue = currentNode.getElement().getValue();
 				currentNode.getElement().setValue(value);
 				return oldValue;
@@ -71,24 +67,6 @@ public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, 
 		addLast(newNode);
 		return null;
 		
-	}
-	
-	private void add( DListNode<Entry<K, V>> currentNode, DListNode<Entry<K, V>> newNode) {
-		if(currentNode.equals(head) || currentNode==null)
-			addFirst(newNode);
-		else
-			addMiddle(currentNode, newNode);
-		currentSize++;
-	}
-	
-	private void addMiddle(DListNode<Entry<K, V>> secondNode, DListNode<Entry<K, V>> newNode) {                         
-		DListNode<Entry<K, V>> firstNode = secondNode.getPrevious();
-		firstNode.setNext(newNode); secondNode.setPrevious(newNode);
-	}
-	
-	private void addFirst(DListNode<Entry<K, V>> newNode) {
-		head=newNode;
-		tail=head;
 	}
 	
 	private void addLast(DListNode<Entry<K, V>> newNode) {
