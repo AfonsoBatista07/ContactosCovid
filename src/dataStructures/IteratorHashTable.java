@@ -2,6 +2,11 @@ package dataStructures;
 
 public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3757572178582017026L;
+	
 	private Entry<K, V> next;
 	private int pos;
 	private Iterator<Entry<K,V>> iterator;

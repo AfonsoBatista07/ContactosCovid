@@ -139,5 +139,4 @@ public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, 
 	public Iterator<Entry<K, V>> iterator() {
 		return new DoublyLLIterator<Entry<K, V>>(head, tail);
 	}
-
 }

@@ -119,7 +119,7 @@ public class CovidSystemClass implements CovidSystem {
 		Message message = new MessageClass(title, text, url);
 		User user = showUser(login);
 		user.recieveMessage(message);
-		Iterator<Group> itGroups = user.listGroups(); sendToGroups(itGroups, message);
+		Iterator<Entry<String, Group>> itGroups = user.listGroups(); sendToGroups(itGroups, message);
 		Iterator<User> itContacts = user.listContacts(); sendToContacts(itContacts, message);
 		
 	}
@@ -172,9 +172,9 @@ public class CovidSystemClass implements CovidSystem {
 	 * @param itGroups - Iterator to all the user groups.
 	 * @param message - The message to send to all.
 	 */
-	private void sendToGroups(Iterator<Group> itGroups, Message message) {
+	private void sendToGroups(Iterator<Entry<String, Group>> itGroups, Message message) {
 		while(itGroups.hasNext())
-			itGroups.next().recieveMessage(message);
+			itGroups.next().getValue().recieveMessage(message);
 	}
 	
 	/**

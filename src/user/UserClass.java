@@ -105,7 +105,7 @@ public class UserClass implements User, Comparable<User> {
 		return feed.iterator();
 	}
 	
-	public Iterator<Group> listGroups() {
+	public Iterator<Entry<String, Group>> listGroups() {
 		return groups.iterator();
 	}
 	

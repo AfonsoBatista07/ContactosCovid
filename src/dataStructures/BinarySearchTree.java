@@ -8,8 +8,7 @@ package dataStructures;
  * @param <V> Generic type Value 
  */
 public class BinarySearchTree<K extends Comparable<K>, V> 
-    implements OrderedDictionary<K,V>
-{                                                                   
+    implements OrderedDictionary<K,V> {                                                                   
 
 	/**
 	 * BST node implementation
@@ -44,8 +43,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * @param right sub-tree of this node
 	     */
 	    public BSTNode( K key, V value, BSTNode<K,V> parent,
-	    		BSTNode<K,V> left, BSTNode<K,V> right )
-	    {                                                                
+	    		BSTNode<K,V> left, BSTNode<K,V> right ) {                                                                
 	        entry = new EntryClass<K,V>(key, value);
 	        this.parent = parent;
 	        leftChild = left; 
@@ -59,8 +57,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * @param key to be stored in this BST tree node
 	     * @param value to be stored in this BST tree node
 	     */
-	    public BSTNode( K key, V value )
-	    {    
+	    public BSTNode( K key, V value ) {    
 	        this(key, value, null, null, null);
 	    }
 
@@ -70,8 +67,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public BSTNode<K,V> getParent( )                                     
-	    {    
+	    public BSTNode<K,V> getParent() {    
 	        return parent;
 	    }
 	    
@@ -80,8 +76,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public BSTNode<K,V> getLeft( )                                     
-	    {    
+	    public BSTNode<K,V> getLeft() {    
 	        return leftChild;
 	    }
 
@@ -91,8 +86,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public BSTNode<K,V> getRight( )                                    
-	    {    
+	    public BSTNode<K,V> getRight() {    
 	        return rightChild;
 	    }
 	    
@@ -101,8 +95,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public EntryClass<K,V> getEntry( )                           
-	    {
+	    public EntryClass<K,V> getEntry( ) {
 	        return entry;
 	    }
 
@@ -112,8 +105,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public K getKey( )                           
-	    {
+	    public K getKey() {
 	        return entry.getKey();
 	    }
 
@@ -123,8 +115,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public V getValue( )                           
-	    {
+	    public V getValue() {
 	        return entry.getValue();
 	    }
 
@@ -134,8 +125,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     *   
 	     * @param newEntry
 	     */
-	    public void setEntry( EntryClass<K,V> newEntry )
-	    {    
+	    public void setEntry( EntryClass<K,V> newEntry ) {    
 	        entry = newEntry;
 	    }
 
@@ -144,8 +134,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @param newValue
 	     */
-	    public void setValue( V newValue )
-	    {    
+	    public void setValue( V newValue ) {    
 	        entry.setValue(newValue);
 	    }
 
@@ -155,8 +144,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @param newLeft the new left child node of the current node
 	     */
-	    public void setLeft( BSTNode<K,V> newLeft )                     
-	    {    
+	    public void setLeft( BSTNode<K,V> newLeft ) {    
 	        leftChild = newLeft;
 	    }
 
@@ -166,8 +154,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @param newLeft the new right child node of the current node
 	     */
-	    public void setRight( BSTNode<K,V> newRight )                   
-	    {    
+	    public void setRight( BSTNode<K,V> newRight ) {    
 	        rightChild = newRight;
 	    }
 
@@ -176,8 +163,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @param newParent the new parent of the current node
 	     */
-	    public void setParent( BSTNode<K,V> newParent )                   
-	    {    
+	    public void setParent( BSTNode<K,V> newParent ) {    
 	        parent = newParent;
 	    }
 	 
@@ -185,8 +171,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * Returns true iff the current node is internal.
 	     */
 		public boolean isInternal() {
-			//TODO
-			return true;
+			return rightChild!= null || leftChild!=null;
 		}
 
 
@@ -195,10 +180,8 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public boolean isLeaf( )                                
-	    {    
-	    	//TODO
-	        return true;          
+	    public boolean isLeaf( ) {    
+	        return (rightChild==null && leftChild==null);          
 	    }                                                                  
 
 
@@ -225,9 +208,9 @@ public class BinarySearchTree<K extends Comparable<K>, V>
      * @return the number of children of node 
      */
 	protected int numChildren(BSTNode<K,V> node) {
-		//int nChildren = 0;
-		//TODO
-		return nChildren;
+		if(node.isLeaf()) return 0;
+		else if(node.getLeft()==null || node.getRight()==null) return 1;
+		else return 2;
 	}
 	
 	@Override
@@ -252,9 +235,8 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     protected BSTNode<K,V> findNode( BSTNode<K,V> node, K key )  {                                                                   
         if ( node == null )
             return null;
-        else
-        {
-            int compResult = key.compareTo( node.getKey() );
+        else {
+            int compResult = key.compareTo(node.getKey());
             if ( compResult == 0 )
                 return node;                                         
             else if ( compResult < 0 )
@@ -274,14 +256,15 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     }
 
     @Override
-    public Entry<K,V> minEntry( ) throws NoElementException
-    {                                                                   
-        //TODO                   
+    public Entry<K,V> minEntry( ) throws NoElementException {                                                                   
+    	if(this.isEmpty())
+    		throw new NoElementException();  
+    	
+    	return this.minNode(root).getEntry();
     }
 
     @Override
-    public Entry<K,V> maxEntry( ) throws NoElementException
-    {                                                                   
+    public Entry<K,V> maxEntry( ) throws NoElementException {                                                                   
         if ( this.isEmpty() )                              
             throw new NoElementException();           
 
@@ -296,67 +279,121 @@ public class BinarySearchTree<K extends Comparable<K>, V>
      * @param node that roots the tree
      * @return node with the largest key in the tree
      */
-    protected BSTNode<K,V> maxNode( BSTNode<K,V> node )
-    {                                                                   
+    protected BSTNode<K,V> maxNode( BSTNode<K,V> node ) {                                                                   
         if ( node.getRight() == null )                            
             return node;                                             
         else                                                     
             return this.maxNode( node.getRight() );                       
-    }                               
+    }  
+    
+    protected BSTNode<K,V> minNode(BSTNode<K,V> node) {
+    	if(node.getLeft()==null)
+    		return node;
+    	else
+    		return this.minNode(node.getLeft());
+    }
 
     public V insert( K key, V value ) {
-        if (root == null) //arvore estava vazia
-        	//caso especial – inserir raiz
+        if (root == null) 										// tree is empty.
+        	root = new BSTNode<K, V>(key, value, null, null, null);
         else {	
-        	BSTNode<K,V> parent = findPlaceToInsert(root, key);  //metodo auxiliar para implementarem
-        	//findPlaceToInsert - parecido com o findNode mas devolve pai do novo no
+        	BSTNode<K,V> parent = findPlaceToInsert(root, key);  
+        	K parentKey = parent.getKey();
 
-        	//TODO
-        	/*Se chave de parent == key
-        	 *   Alterar valor de parent para value
-        	 *   devolver value antigo
-        	 *Senao
-        	 *  inserir novo no como filho esquerdo ou direito de parent
-        	 *  devolver null (nao esquecer o currentSize)
-        	 */
+        	if(parentKey==key) {
+        		V oldValue = parent.getValue();
+        		parent.setValue(value);
+        		return oldValue;
+        	} else { 
+        		BSTNode<K,V> newNode = new BSTNode<K,V>(key, value ,parent, null, null);
+        		if(parentKey.compareTo(key)<0)
+        			parent.setRight(newNode);
+        		else
+        			parent.setLeft(newNode);
+        	}
         }
+        currentSize++;
+        return null;
     }
     
+    private BSTNode<K,V> findPlaceToInsert(BSTNode<K,V> node, K key) {
+   	 int compResult = key.compareTo(node.getKey());
+        if ( compResult == 0 )
+            return node;                                         
+        else if ( compResult < 0 ) {
+            if(node.getLeft()==null)
+            	return node;
+            return this.findPlaceToInsert(node.getLeft(), key);
+        } else {
+        	if(node.getRight()==null)
+        		return node;
+        	return this.findPlaceToInsert(node.getRight(), key); 
+   		}
+   }
   
-    //sugestao: implementar metodo auxiliary replaceParentWithChild(nodeToRemove, child) que poe
-    //pai de noteToRemove a apontar para child (filho de nodeToRemove)
     public V remove (K key) {
     	BSTNode<K,V> nodeToRemove = findNode(root, key);
 	
     	if (nodeToRemove!=null) {
-    		/*se nodeToRemove so tem um filho ou e folha
-    		 *   o pai fica a apontar para esse filho (ou para null)
-    		 *senao  //tem 2 filhos
-    		 *  procurar no substituto (na subarvore esq. ou na dir.)
-    		 *  remover no substituto
-    		 *  trocar entry do nodeToRemove pela entry do no substituto
-    		 *  (reparem que, caso ainda nao o tenham feito, e preciso 
-    		 *  implementar a classe EntryClass, e precisam do metodo setEntry)
-    		 *  
-    		 *return ...  (nao esquecer o currentSize)
-    		 */
-
+    		if(numChildren(nodeToRemove)==1)
+    			replaceParentWithChild(nodeToRemove, getChild(nodeToRemove), key);
+    		else if(nodeToRemove.isLeaf())
+    			replaceParentWithChild(nodeToRemove, null, key);
+    		else
+    			replaceParentWithChildTwoChilds(nodeToRemove,nodeToRemove.getLeft(), key);
+    		currentSize--;
+    		return nodeToRemove.getValue();
     	}
-    	else  //não encontra nó para remover
-    		//return ...	
+    	return null;                              	
     }
     
+    private void replaceParentWithChild(BSTNode<K,V> nodeToRemove, BSTNode<K,V> child, K key) {
+    	BSTNode<K,V> parent = nodeToRemove.getParent();
+    	if(parent==null) root=child;
+    	else if(parent.getKey().compareTo(key) < 0) parent.setRight(child);
+    	else parent.setLeft(child);
+    	if(child!=null)
+    		child.setParent(parent);
+    }
+    
+    private void replaceParentWithChildTwoChilds(BSTNode<K,V> nodeToRemove, BSTNode<K,V> child, K key) {
+    	BSTNode<K,V> parent = nodeToRemove.getParent();
+    	BSTNode<K,V> rightNode = nodeToRemove.getRight();
+    	BSTNode<K,V> rightNodeOfChild = child.getRight();
+    	BSTNode<K,V> leftNodeOfRight = rightNode;
+
+    	if(parent==null) root = child;
+    	else if(parent.getKey().compareTo(key) < 0)
+    		parent.setRight(child);
+    	else
+    		parent.setLeft(child);
+    	child.setParent(parent);
+    	while(!leftNodeOfRight.isLeaf())
+    		leftNodeOfRight = leftNodeOfRight.getLeft();
+    	
+    	if(rightNodeOfChild!=null) {
+    		leftNodeOfRight.setLeft(rightNodeOfChild);
+    		rightNodeOfChild.setParent(leftNodeOfRight);
+    	}
+    	
+    	child.setRight(rightNode);
+    	rightNode.setParent(child);
+    	
+    }
+    
+    private BSTNode<K,V> getChild(BSTNode<K,V> parent) {
+    	BSTNode<K,V> left = parent.getLeft();
+    	if(left==null) return parent.getRight();
+    	return left;
+    }
   
     /**
      * Returns an iterator of the entries in the dictionary 
      * which preserves the key order relation.
      * @return  key-order iterator of the entries in the dictionary
      */
-    public Iterator<Entry<K,V>> iterator( ) 
-    {
-        //TODO: Original comentado para nao dar erro de compilacao.
-        // return new BSTKeyOrderIterator<K,V>(root);
-        return null;
+    public Iterator<Entry<K,V>> iterator() {
+        return new BSTKeyOrderIterator<K,V>(root);
     }
 
 }

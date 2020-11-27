@@ -54,7 +54,7 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     }
 
     @Override
-    public V insert( K key, V value ) {
+    public V insert(K key, V value) {
         if ( this.isFull() )
             this.rehash();
         
@@ -62,16 +62,15 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     }
 
     @Override
-    public V remove( K key )
-    {
+    public V remove(K key) {
     	return table[hash(key)].remove(key);
     }
 
     @Override
-    public Iterator<Entry<K,V>> iterator( )
-    {
+    public Iterator<Entry<K,V>> iterator() {
     	return new IteratorHashTable<K,V>(table);
     }
+    
     // Caraca tudo fodido
     public void rehash() {
     	Iterator<Entry<K, V>> it = iterator();
