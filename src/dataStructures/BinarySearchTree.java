@@ -357,23 +357,15 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     }
     
     private void replaceParentWithChildTwoChilds(BSTNode<K,V> nodeToRemove, BSTNode<K,V> child, K key) {
-    	BSTNode<K,V> parent = nodeToRemove.getParent();
     	BSTNode<K,V> rightNode = nodeToRemove.getRight();
     	BSTNode<K,V> rightNodeOfChild = child.getRight();
-    	BSTNode<K,V> leftNodeOfRight = rightNode;
+    	BSTNode<K,V> minNodeOfRightNode = minNode(rightNode);
 
-    	if(parent==null) root = child;
-    	else if(parent.getKey().compareTo(key) < 0)
-    		parent.setRight(child);
-    	else
-    		parent.setLeft(child);
-    	child.setParent(parent);
-    	while(!leftNodeOfRight.isLeaf())
-    		leftNodeOfRight = leftNodeOfRight.getLeft();
+    	replaceParentWithChild(nodeToRemove, child, key);
     	
     	if(rightNodeOfChild!=null) {
-    		leftNodeOfRight.setLeft(rightNodeOfChild);
-    		rightNodeOfChild.setParent(leftNodeOfRight);
+    		minNodeOfRightNode.setLeft(rightNodeOfChild);
+    		rightNodeOfChild.setParent(minNodeOfRightNode);
     	}
     	
     	child.setRight(rightNode);
