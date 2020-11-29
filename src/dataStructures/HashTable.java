@@ -111,7 +111,7 @@ public abstract class HashTable<K,V> implements Dictionary<K,V>
     @Override
     public abstract Iterator<Entry<K,V>> iterator( );
 
-
+    public abstract Iterator<V> values();
     //
     // Protected Instance Methods
     //

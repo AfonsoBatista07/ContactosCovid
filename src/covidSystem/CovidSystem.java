@@ -61,7 +61,7 @@ public interface CovidSystem {
 	 * @throws UserDoesntExistException - If the wanted user doesn't exist.
 	 * @throws UserNoContactsException - If the user doesn't have any contacts.
 	 */
-	Iterator<Entry<String, User>> listContacts(String login) 
+	Iterator<User> listContacts(String login) 
 			throws UserDoesntExistException, UserNoContactsException;
 	
 	/**
@@ -110,11 +110,11 @@ public interface CovidSystem {
 	
 	/**
 	 * @param groupName - Group name (its unique).
-	 * @returnan Iterator with all the Users.
+	 * @return an Iterator with all the Users.
 	 * @throws UserDoesntExistException - If the wanted user doesn't exist.
 	 * @throws GroupIsEmptyException - If the group is empty.
 	 */
-	Iterator<Entry<String, User>> listParticipants(String groupName)
+	Iterator<User> listParticipants(String groupName)
 			throws UserDoesntExistException, GroupIsEmptyException;
 	
 	/**

@@ -91,7 +91,7 @@ public interface User extends Comparable<User> {
 	/**
 	 * @return Iterator of the User Contacts.
 	 */
-	Iterator<Entry<String, User>> listContacts(); 
+	Iterator<User> listContacts(); 
 	
 	/**
 	 * @return Iterator of the User Messages.
@@ -101,5 +101,5 @@ public interface User extends Comparable<User> {
 	/**
 	 * @return Iterator of the User Group.
 	 */
-	Iterator<Entry<String,Group>> listGroups();
+	Iterator<Group> listGroups();
 }

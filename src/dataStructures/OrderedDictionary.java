@@ -35,7 +35,9 @@ public interface OrderedDictionary<K extends Comparable<K>, V>
      * 
      * @see dataStructures.Dictionary#iterator()
      */
-    // Iterator<Entry<K,V>> iterator( );  
+    Iterator<Entry<K,V>> iterator();
+    
+    Iterator<V> values();
 
 } 
 

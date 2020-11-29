@@ -97,16 +97,16 @@ public class UserClass implements User, Comparable<User> {
 		feed.addFirst(message);
 	}
 	
-	public Iterator<Entry<String, User>> listContacts() { 
-		return contacts.iterator();
+	public Iterator<User> listContacts() { 
+		return contacts.values();
 	}
 	
 	public Iterator<Message> listMessages() {
 		return feed.iterator();
 	}
 	
-	public Iterator<Entry<String, Group>> listGroups() {
-		return groups.iterator();
+	public Iterator<Group> listGroups() {
+		return groups.values();
 	}
 	
 	public boolean isContact(User user) {

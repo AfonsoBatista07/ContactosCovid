@@ -71,6 +71,10 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     	return new IteratorHashTable<K,V>(table);
     }
     
+    public Iterator<V> values() {
+    	return new IteratorValues<K,V>(table);
+    }
+    
     @SuppressWarnings("unchecked")
     public void rehash() {
     	Iterator<Entry<K, V>> it = iterator();

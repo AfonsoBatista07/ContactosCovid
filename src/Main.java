@@ -230,10 +230,10 @@ public class Main {
 		String login = in.next().toUpperCase(); 
 		in.nextLine(); 
 		try { 
-			Iterator<Entry<String, User>> it = csys.listContacts(login);  
+			Iterator<User> it = csys.listContacts(login);  
 			User user; 
 			while(it.hasNext()) { 
-				user = it.next().getValue(); 
+				user = it.next(); 
 				System.out.printf(SUCCESS_LIST_CONTACTS, user.getLogin(), user.getName()); 
 			} 
 		} catch(UserDoesntExistException e) { 
@@ -345,10 +345,10 @@ public class Main {
 		String groupName = in.nextLine().trim().toUpperCase(); 
 		in.nextLine(); 
 		try { 
-			Iterator<Entry<String, User>> it = csys.listParticipants(groupName); 
+			Iterator<User> it = csys.listParticipants(groupName); 
 			User user; 
 			while(it.hasNext()) { 
-				user = it.next().getValue(); 
+				user = it.next(); 
 				System.out.printf(SUCCESS_LIST_GROUP_USERS, user.getLogin(), user.getName()); 
 			} 
 		} catch(GroupDoesntExistException e) { 

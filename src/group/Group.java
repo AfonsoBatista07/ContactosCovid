@@ -43,7 +43,7 @@ public interface Group extends Comparable<Group>{
 	/**
 	 * @return Iterator of the group members.
 	 */
-	 Iterator<Entry<String, User>> listMembers();
+	 Iterator<User> listMembers();
 	
 	/**
 	 * @return Iterator of the group messages.

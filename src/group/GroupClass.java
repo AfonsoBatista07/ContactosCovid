@@ -57,8 +57,8 @@ public class GroupClass implements Group, Comparable<Group>{
 		messages.addFirst(message);
 	}
 	
-	public Iterator<Entry<String, User>> listMembers() { 
-		return members.iterator();
+	public Iterator<User> listMembers() { 
+		return members.values();
 	}
 	
 	public Iterator<Message> listMessages() {

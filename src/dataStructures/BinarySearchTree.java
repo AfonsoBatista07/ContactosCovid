@@ -387,6 +387,10 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     public Iterator<Entry<K,V>> iterator() {
         return new BSTKeyOrderIterator<K,V>(root);
     }
+    
+    public Iterator<V> values() {
+    	return new IteratorTreeValues<>(root);
+    }
 
 }
 
