@@ -84,12 +84,14 @@ public class ChainedHashTable<K extends Comparable<K>, V>
 		for ( int i = 0; i < arraySize; i++ )
 			newTable[i] = new CollisionList<K,V>();
 		
+		maxSize = 2*maxSize;
+		table = newTable;
+		currentSize = 0;
+		
 		while(it.hasNext()) {
 			Entry<K,V> entry = it.next();
 			newTable[hash(entry.getKey())].insert(entry.getKey(), entry.getValue());
 		}
-		maxSize = 2*maxSize;
-		table = newTable;
     }
 }
 
