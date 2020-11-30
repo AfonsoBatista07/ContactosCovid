@@ -16,7 +16,7 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 		this.table = table;
 		pos = 0;
 		iterator = null;
-		next = getFirst();
+		updateNext();
 	}
 	
 	@Override
@@ -29,42 +29,33 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 	public Entry<K, V> next() throws NoSuchElementException {
 		if(!hasNext()) throw new NoSuchElementException();
 		Entry<K,V> returnNext = next;
+			
 		if( iterator.hasNext()) {
 			next = iterator.next();
 			return returnNext;
 		}
+		updateNext();
+		return returnNext;
+	}
+	
+	private void updateNext() {
 		while(pos<table.length-1) {
 			pos++;
 			Iterator<Entry<K,V>> it = table[pos].iterator();
 			if(it.hasNext()) {    													// BETTER CODING !!!!!!!!!!!!!!!!!!!!!!1
 				next= it.next();
 				iterator = it;
-				return returnNext;
+				return;
 			}
 		}
 		next = null;
-		return returnNext;
-	}
-	
-	private Entry<K, V> getFirst() {
-		while(pos<table.length-1) {
-			pos++;
-			Iterator<Entry<K,V>> it = table[pos].iterator();
-			if(it.hasNext()) {
-				next = it.next();
-				iterator = it;
-				return next;
-			}
-		}
-		next = null;
-		return next;
 	}
 
 	@Override
 	public void rewind() {
 		pos = 0;
 		iterator = null;
-		next = getFirst();
+		updateNext();
 		
 	}
 
