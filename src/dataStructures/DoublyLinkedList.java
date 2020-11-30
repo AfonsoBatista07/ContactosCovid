@@ -328,11 +328,13 @@ public class DoublyLinkedList<E> implements List<E>  {
      * @param list - list to be appended to the end of this
      */
     public void append( DoublyLinkedList<E> list ) {
-        tail.setNext(list.head);				// se for null explode
-        list.head.setPrevious(tail);
-        tail=list.tail;
-        list.head=null; list.tail=null;
-        currentSize+=list.currentSize;
+    	if(list!=null && tail!=null) {
+    		tail.setNext(list.head);				
+        	list.head.setPrevious(tail);
+        	tail=list.tail;
+        	list.head=null; list.tail=null;
+        	currentSize+=list.currentSize;
+    	}
     }
 
 
