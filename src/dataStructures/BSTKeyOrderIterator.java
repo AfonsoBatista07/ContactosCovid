@@ -17,7 +17,7 @@ public class BSTKeyOrderIterator<K,V> implements Iterator<Entry<K,V>> {
 		stack = new StackInList<BSTNode<K,V>>();
 		next = leftMost(root);
 	}
-	
+
 	@Override
 	public boolean hasNext() {
 		return next != null;

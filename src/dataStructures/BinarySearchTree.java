@@ -67,7 +67,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	     * 
 	     * @return
 	     */
-	    public BSTNode<K,V> getParent() {    
+	    public BSTNode<K,V> getParent() {
 	        return parent;
 	    }
 	    
