@@ -25,7 +25,6 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 	}
 
 	@Override
-	//Meter o getFirst aqui dentro
 	public Entry<K, V> next() throws NoSuchElementException {
 		if(!hasNext()) throw new NoSuchElementException();
 		Entry<K,V> returnNext = next;
@@ -42,7 +41,7 @@ public class IteratorHashTable<K,V> implements Iterator<Entry<K,V>> {
 		while(pos<table.length-1) {
 			pos++;
 			Iterator<Entry<K,V>> it = table[pos].iterator();
-			if(it.hasNext()) {    													// BETTER CODING !!!!!!!!!!!!!!!!!!!!!!1
+			if(it.hasNext()) {    												
 				next= it.next();
 				iterator = it;
 				return;
