@@ -2,11 +2,13 @@ package dataStructures;
 
 import dataStructures.BinarySearchTree.BSTNode;
 
-public class BSTKeyOrderIterator<K,V> implements Iterator<Entry<K,V>> {
+/**  
+ * Binary Search Tree Key Order Iterator implementation
+ * @author Afonso Batista 57796  
+ * @author Joao Jorge 57994  
+ */  
 
-	/**
-	 * 
-	 */
+public class BSTKeyOrderIterator<K,V> implements Iterator<Entry<K,V>> {
 	private static final long serialVersionUID = -4565987179362609417L;
 	private BSTNode<K,V> next;
 	private BSTNode<K,V> root;
@@ -38,6 +40,11 @@ public class BSTKeyOrderIterator<K,V> implements Iterator<Entry<K,V>> {
 		return nextToReturn.getEntry();
 	}
 	
+	/**
+	 * Returns the left most node descended to the given node
+	 * @param node - BSTNode
+	 * @return the left most node descended to the given node
+	 */
 	private BSTNode<K,V> leftMost(BSTNode<K,V> node) {
 		if(node == null) return null;
 		while(node != null) {

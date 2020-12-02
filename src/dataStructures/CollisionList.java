@@ -2,6 +2,12 @@ package dataStructures;
 
 import dataStructures.DoublyLinkedList.DListNode;
 
+/**  
+ * Colision List implementation
+ * @author Afonso Batista 57796  
+ * @author Joao Jorge 57994  
+ */  
+
 public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, V> {
 	
 	// Node at the head of the list.
@@ -69,6 +75,10 @@ public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, 
 		
 	}
 	
+	/**
+	 * Inserts the given node at the back of the List
+	 * @param newNode - Node to insert
+	 */
 	private void addLast(DListNode<Entry<K, V>> newNode) {
 		if(isEmpty()) { head=newNode; tail=head; }
 		else {
@@ -95,16 +105,27 @@ public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, 
 		return node.getElement().getValue();
 	}
 	
+	/**
+	 * Removes the first Node of the List
+	 */
 	private void removeFirst() {
 		head = head.getNext();
 		head.setPrevious(null);
 	}
 	
+	/**
+	 * Removes the last Node of the List
+	 */
 	private void removeLast() {
 		tail = tail.getPrevious();
 		tail.setNext(null);
 	}
 	
+	/**
+	 * Removes the given node from the list´
+	 * @pre node.getLeft() != null && node.getRight() != null
+	 * @param node - Node to remove
+	 */
 	private void removeMiddle(DListNode<Entry<K, V>> node) {
 		DListNode<Entry<K, V>> firstNode = node.getPrevious();
     	DListNode<Entry<K, V>> secondNode = node.getNext();

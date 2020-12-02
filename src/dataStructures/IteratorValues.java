@@ -1,10 +1,13 @@
 package dataStructures;
 
+/**  
+ * Chained Hash Table Value Iterator implementation
+ * @author Afonso Batista 57796  
+ * @author Joao Jorge 57994  
+ */  
+
 public class IteratorValues<K,V> implements Iterator<V> {
 		
-	/**
-	* 
-	*/
 	private static final long serialVersionUID = -3757572178582017024L;
 	private Iterator<Entry<K,V>> iterator;
 		

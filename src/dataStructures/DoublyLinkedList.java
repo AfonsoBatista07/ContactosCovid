@@ -334,6 +334,11 @@ public class DoublyLinkedList<E> implements List<E>  {
         	tail=list.tail;
         	list.head=null; list.tail=null;
         	currentSize+=list.currentSize;
+    	} else if ( list != null && tail == null) {
+    		head = list.head;
+    		tail = list.tail;
+        	list.head=null; list.tail=null;
+    		currentSize+=list.currentSize;
     	}
     }
 

@@ -1,5 +1,11 @@
 package dataStructures;
 
+/**  
+ * Entry Class implementation
+ * @author Afonso Batista 57796  
+ * @author Joao Jorge 57994  
+ */  
+
 public class EntryClass<K, V> implements Entry<K, V> {
 
 	private K key;
