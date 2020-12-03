@@ -63,18 +63,14 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 
 
 	    /**
-	     * Returns the parent node of the current node.
-	     * 
-	     * @return
+	     * @return the parent node of the current node.
 	     */
 	    public BSTNode<K,V> getParent() {
 	        return parent;
 	    }
 	    
 	    /**
-	     * Returns the left child node of the current node.
-	     * 
-	     * @return
+	     * @return the left child node of the current node.
 	     */
 	    public BSTNode<K,V> getLeft() {    
 	        return leftChild;
@@ -82,18 +78,14 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 
 
 	    /**
-	     * Returns the right child node of the current node.
-	     * 
-	     * @return
+	     * @return the right child node of the current node.
 	     */
 	    public BSTNode<K,V> getRight() {    
 	        return rightChild;
 	    }
 	    
 	    /**
-	     * Returns the entry (key and value) of the current node.
-	     * 
-	     * @return
+	     * @return the entry (key and value) of the current node.
 	     */
 	    public EntryClass<K,V> getEntry( ) {
 	        return entry;
@@ -101,9 +93,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 
 
 	    /**
-	     * Returns the key of the current node.
-	     * 
-	     * @return
+	     * @return the key of the current node.
 	     */
 	    public K getKey() {
 	        return entry.getKey();
@@ -111,9 +101,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 
 
 	    /**
-	     * Returns the value of the current node.
-	     * 
-	     * @return
+	     * @return the value of the current node.
 	     */
 	    public V getValue() {
 	        return entry.getValue();
@@ -123,7 +111,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	    /**
 	     * Assigns a new entry (key and value) to the current BST node
 	     *   
-	     * @param newEntry
+	     * @param newEntry - newEntry to set.
 	     */
 	    public void setEntry( EntryClass<K,V> newEntry ) {    
 	        entry = newEntry;
@@ -132,7 +120,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	    /**
 	     * Sets the new value object of the current node.
 	     * 
-	     * @param newValue
+	     * @param newValue - new value to set.
 	     */
 	    public void setValue( V newValue ) {    
 	        entry.setValue(newValue);
@@ -142,7 +130,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	    /**
 	     * Sets the new left child node of this node
 	     * 
-	     * @param newLeft the new left child node of the current node
+	     * @param newLeft - the new left child node of the current node
 	     */
 	    public void setLeft( BSTNode<K,V> newLeft ) {    
 	        leftChild = newLeft;
@@ -152,7 +140,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	    /**
 	     * Sets the new right child node of this node
 	     * 
-	     * @param newLeft the new right child node of the current node
+	     * @param newRight - the new right child node of the current node
 	     */
 	    public void setRight( BSTNode<K,V> newRight ) {    
 	        rightChild = newRight;
@@ -161,14 +149,14 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	    /**
 	     * Sets the new parent of this node
 	     * 
-	     * @param newParent the new parent of the current node
+	     * @param newParent - the new parent of the current node
 	     */
 	    public void setParent( BSTNode<K,V> newParent ) {    
 	        parent = newParent;
 	    }
 	 
 	    /**
-	     * Returns true iff the current node is internal.
+	     * Returns true, if the current node is internal.
 	     */
 		public boolean isInternal() {
 			return rightChild!= null || leftChild!=null;
@@ -178,7 +166,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
 	    /**
 	     * Returns true iff the node is a leaf.
 	     * 
-	     * @return
+	     * @return true if this node don't have right child and left child. 
 	     */
 	    public boolean isLeaf( ) {    
 	        return (rightChild==null && leftChild==null);          
@@ -204,8 +192,8 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     /**
      * Returns the number of children of node.
      *                         
-     * @param node 
-     * @return the number of children of node 
+     * @param node - node.
+     * @return the number of children of node.
      */
 	protected int numChildren(BSTNode<K,V> node) {
 		if(node.isLeaf()) return 0;
@@ -228,9 +216,9 @@ public class BinarySearchTree<K extends Comparable<K>, V>
      * Returns the node whose key is the specified key;
      * or null if no such node exists.        
      *                         
-     * @param node where the search starts 
-     * @param key to be found
-     * @return the found node, when the search is successful
+     * @param node - where the search starts. 
+     * @param key - to be found.
+     * @return the found node, when the search is successful.
      */
     protected BSTNode<K,V> findNode( BSTNode<K,V> node, K key )  {                                                                   
         if ( node == null )
@@ -276,8 +264,8 @@ public class BinarySearchTree<K extends Comparable<K>, V>
      * Returns the node with the largest key 
      * in the tree rooted at the specified node.
      * Requires: node != null.
-     * @param node that roots the tree
-     * @return node with the largest key in the tree
+     * @param node - node that roots the tree.
+     * @return node with the largest key in the tree.
      */
     protected BSTNode<K,V> maxNode( BSTNode<K,V> node ) {                                                                   
         if ( node.getRight() == null )                            
@@ -286,6 +274,13 @@ public class BinarySearchTree<K extends Comparable<K>, V>
             return this.maxNode( node.getRight() );                       
     }  
     
+    /**
+     * Returns the node with the smallest key 
+     * in the tree rooted at the specified node.
+     * Requires: node != null.
+     * @param node - node that roots the tree.
+     * @return node with the smallest key in the tree.
+     */
     protected BSTNode<K,V> minNode(BSTNode<K,V> node) {
     	if(node.getLeft()==null)
     		return node;
@@ -294,7 +289,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     }
 
     public V insert( K key, V value ) {
-        if (root == null) 										// tree is empty.
+        if (root == null) 											// tree is empty.
         	root = new BSTNode<K, V>(key, value, null, null, null);
         else {	
         	BSTNode<K,V> parent = findPlaceToInsert(root, key);  
@@ -316,6 +311,12 @@ public class BinarySearchTree<K extends Comparable<K>, V>
         return null;
     }
     
+    /**
+     * finds a place to insert the specified <node> at the tree.
+     * @param node - node to find a place to insert.
+     * @param key - node key.
+     * @return the parent of the <node> to insert, at the best place.
+     */
     private BSTNode<K,V> findPlaceToInsert(BSTNode<K,V> node, K key) {
    	 int compResult = key.compareTo(node.getKey());
         if ( compResult == 0 )
@@ -347,6 +348,12 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     	return null;                              	
     }
     
+    /**
+     * If <nodeToRemove> have just one child: this method replaces the <nodeToRemove> parent with the his only child.
+     * @param nodeToRemove - node to be removed.
+     * @param child - left child of the node to remove.
+     * @param key - node to remove key.
+     */
     private void replaceParentWithChild(BSTNode<K,V> nodeToRemove, BSTNode<K,V> child, K key) {
     	BSTNode<K,V> parent = nodeToRemove.getParent();
     	if(parent==null) root=child;
@@ -356,6 +363,12 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     		child.setParent(parent);
     }
     
+    /**
+     * If <nodeToRemove> have two children: this method replaces the <nodeToRemove> parent with the left child.
+     * @param nodeToRemove - node to be removed.
+     * @param child - left child of the node to remove.
+     * @param key - node to remove key.
+     */
     private void replaceParentWithChildTwoChilds(BSTNode<K,V> nodeToRemove, BSTNode<K,V> child, K key) {
     	BSTNode<K,V> rightNode = nodeToRemove.getRight();
     	BSTNode<K,V> rightNodeOfChild = child.getRight();
@@ -373,6 +386,10 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     	
     }
     
+    /**
+     * @param parent - node
+     * @return the <parent> child.
+     */
     private BSTNode<K,V> getChild(BSTNode<K,V> parent) {
     	BSTNode<K,V> left = parent.getLeft();
     	if(left==null) return parent.getRight();
@@ -382,12 +399,17 @@ public class BinarySearchTree<K extends Comparable<K>, V>
     /**
      * Returns an iterator of the entries in the dictionary 
      * which preserves the key order relation.
-     * @return  key-order iterator of the entries in the dictionary
+     * @return  key order iterator of the entries in the dictionary
      */
     public Iterator<Entry<K,V>> iterator() {
         return new BSTKeyOrderIterator<K,V>(root);
     }
     
+    /**
+     * Returns an iterator of the values in the dictionary 
+     * which preserves the key order relation.
+     * @return  key order iterator of the values in the dictionary
+     */
     public Iterator<V> values() {
     	return new IteratorTreeValues<>(root);
     }
