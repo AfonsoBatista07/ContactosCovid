@@ -1,6 +1,5 @@
 package user;
 
-import dataStructures.Entry;
 import dataStructures.Iterator;
 import group.Group;
 import message.Message;

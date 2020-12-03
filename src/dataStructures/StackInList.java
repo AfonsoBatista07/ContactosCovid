@@ -1,5 +1,12 @@
 package dataStructures;
 
+/**
+ * Stack In List Class Implementation
+ * @author Afonso Batista 57796  
+ * @author Joao Jorge 57994  
+ * @param <E> Generic Element
+ */
+
 public class StackInList<E> implements Stack<E>
 {
 

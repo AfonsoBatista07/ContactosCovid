@@ -6,6 +6,8 @@ import dataStructures.DoublyLinkedList.DListNode;
  * Colision List implementation
  * @author Afonso Batista 57796  
  * @author Joao Jorge 57994  
+ * @param <K> Generic type Key.
+ * @param <V> Generic type Value. 
  */  
 
 public class CollisionList<K extends Comparable<K>, V> implements Dictionary<K, V> {

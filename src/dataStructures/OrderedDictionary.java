@@ -16,7 +16,7 @@ public interface OrderedDictionary<K extends Comparable<K>, V>
     /**
      * Returns the entry with the smallest key in the dictionary.
      *
-     * @return
+     * @return entry with the smallest key in the dictionary
      * @throws EmptyDictionaryException
      */
     Entry<K,V> minEntry( ) throws NoElementException;
@@ -24,19 +24,23 @@ public interface OrderedDictionary<K extends Comparable<K>, V>
     /**
      * Returns the entry with the largest key in the dictionary.
      *
-     * @return
+     * @return entry with the largest key in the dictionary
      * @throws EmptyDictionaryException
      */
     Entry<K,V> maxEntry( ) throws NoElementException;
 
-    /* (non-Javadoc)
-     * Returns an iterator of the entries in the dictionary 
-     * which preserves the key order relation.
-     * 
-     * @see dataStructures.Dictionary#iterator()
+    /**
+     *  Returns an iterator of the entries in the dictionary 
+     *  which preserves the key order relation.
+     * @return a iterator with all the elements on sequence.
      */
     Iterator<Entry<K,V>> iterator();
     
+    /**
+     *  Returns an iterator of the values in the dictionary 
+     *  which preserves the key order relation.
+     * @return a iterator with all the values on sequence.
+     */
     Iterator<V> values();
 
 } 

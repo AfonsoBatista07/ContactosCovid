@@ -10,6 +10,12 @@ package dataStructures;
 
 import dataStructures.DoublyLinkedList.DListNode;
 
+/**
+ * Doubly Linked List Iterator Interface
+ * @author Afonso Batista 57796  
+ * @author Joao Jorge 57994  
+ * @param <E> Generic Element
+ */
 class DoublyLLIterator<E> implements TwoWayIterator<E>
 {
 
@@ -84,7 +90,6 @@ class DoublyLLIterator<E> implements TwoWayIterator<E>
 
 
     @Override
-    // falta mudar o prevToReturn
     public E next( ) throws NoSuchElementException
     {
         if ( !this.hasNext() )
