@@ -34,8 +34,10 @@ public class AdvancedBSTree <K extends Comparable<K>, V>
 	    	//Swap childs
 	    	leftChild.setRight(Y);
 	    	Y.setParent(leftChild);
-	    	Y.setLeft(leftRightChild);
-	    	leftRightChild.setParent(Y);
+	    	if(leftRightChild!=null) {
+	    		Y.setLeft(leftRightChild);
+	    		leftRightChild.setParent(Y);
+	    	}
 	    }
 	    
 	    /**
@@ -65,8 +67,10 @@ public class AdvancedBSTree <K extends Comparable<K>, V>
 	    	//Swap childs
 	    	rightChild.setLeft(Y);
 	    	Y.setParent(rightChild);
-	    	Y.setRight(rightLeftChild);
-	    	rightLeftChild.setParent(Y);
+	    	if(rightLeftChild!=null) {
+	    		Y.setRight(rightLeftChild);
+	    		rightLeftChild.setParent(Y);
+	    	}
 	    }
 	    
 	   /** 
@@ -94,8 +98,8 @@ public class AdvancedBSTree <K extends Comparable<K>, V>
 	    	// [Goodrich et al., 2015]
 	    	BSTNode<K,V> parent = x.getParent();
 	    	BSTNode<K,V> grandParent = parent.getParent();
-	    	if( grandParent.getLeft().getKey().compareTo(parent.getKey()) == 0) {
-	    		if( parent.getLeft().getKey().compareTo(x.getKey()) == 0) {
+	    	if( grandParent.getLeft() != null && grandParent.getLeft().getKey().compareTo(parent.getKey()) == 0) {
+	    		if( parent.getLeft()!=null && parent.getLeft().getKey().compareTo(x.getKey()) == 0) {
 		    		rotateRight(grandParent);
 		    		return parent;
 			    } else {

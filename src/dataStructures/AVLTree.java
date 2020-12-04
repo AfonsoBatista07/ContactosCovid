@@ -52,7 +52,8 @@ static class AVLNode<K,V> extends BSTNode<K,V> {
 				 return leftChild;
 			 else if (leftChildHeight < rightChildHeight)
 				 return rightChild;
-			return null;
+			 else 
+				 return rightChild;
 		}
 }
 
@@ -66,7 +67,6 @@ static class AVLNode<K,V> extends BSTNode<K,V> {
   protected void rebalance(AVLNode<K,V> zPos) {
     if(zPos.isInternal())
        zPos.setHeight();
-    // Melhorar se possivel
     while (zPos.getParent()!=null) {  // traverse up the tree towards the root
       zPos = (AVLNode<K, V>) zPos.getParent();
       zPos.setHeight();
@@ -84,6 +84,23 @@ static class AVLNode<K,V> extends BSTNode<K,V> {
       }
     }
   } 
+  
+  protected void rebalanceRemove(AVLNode<K,V> zPos) {
+	  if(zPos.isInternal())
+	       zPos.setHeight();
+	    while (zPos.getParent()!=null) {  // traverse up the tree towards the root
+	      zPos.setHeight();
+	      if (!zPos.isBalance()) { 	    	  
+	    	  AVLNode<K,V> xPos = zPos.tallerChild().tallerChild();
+	    	  zPos = (AVLNode<K, V>) restructure(xPos); 
+	    	
+	    	  ((AVLNode<K, V>) zPos.getLeft()).setHeight();  
+	    	  ((AVLNode<K, V>) zPos.getRight()).setHeight();
+	    	  zPos.setHeight();
+	      }
+	      zPos = (AVLNode<K, V>) zPos.getParent();
+	 }	
+  }
   
   public V insert(K key, V value) {
 	 if (root == null)
@@ -120,7 +137,7 @@ public V remove(K key) {
 		valueToReturn = super.remove(key);
 	}
 	if(node != null) //(if find(key)==null)
-		rebalance(node); // rebalance up from the node
+		rebalanceRemove(node); // rebalance up from the node
 	return valueToReturn;
 }
 
