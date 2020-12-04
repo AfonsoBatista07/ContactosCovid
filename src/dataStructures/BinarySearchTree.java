@@ -317,7 +317,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
      * @param key - node key.
      * @return the parent of the <node> to insert, at the best place.
      */
-    private BSTNode<K,V> findPlaceToInsert(BSTNode<K,V> node, K key) {
+    protected BSTNode<K,V> findPlaceToInsert(BSTNode<K,V> node, K key) {
    	 int compResult = key.compareTo(node.getKey());
         if ( compResult == 0 )
             return node;                                         

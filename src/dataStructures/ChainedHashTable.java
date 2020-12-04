@@ -22,13 +22,9 @@ public class ChainedHashTable<K extends Comparable<K>, V>
      * maxSize is initialized to the capacity.
      * @param capacity defines the table capacity.
      */
-    @SuppressWarnings("unchecked")
-    public ChainedHashTable( int capacity )
-    {
-        int arraySize = HashTable.nextPrime((int) (1.1 * capacity));
-        table = (Dictionary<K,V>[]) new Dictionary[arraySize];
-        for ( int i = 0; i < arraySize; i++ )
-            table[i] = new CollisionList<K,V>();
+    public ChainedHashTable( int capacity ) {
+      
+        table = newTable(capacity);
         maxSize = capacity;
         currentSize = 0;
     }                                      
@@ -75,22 +71,32 @@ public class ChainedHashTable<K extends Comparable<K>, V>
     	return new IteratorValues<K,V>(table);
     }
     
+    /**
+     * Creates a new table with more space and makes a rehash of the elements.
+     */
+    private void rehash() {
+		maxSize = 2*maxSize;
+		table = newTable(maxSize);
+		currentSize = 0;
+		
+		Iterator<Entry<K, V>> it = iterator();
+		while(it.hasNext()) {
+			Entry<K,V> entry = it.next();
+			table[hash(entry.getKey())].insert(entry.getKey(), entry.getValue());
+		}
+    }
+    
+    /**
+     * @param capacity - capacity for new table.
+     * @return
+     */
     @SuppressWarnings("unchecked")
-    public void rehash() {
-    	Iterator<Entry<K, V>> it = iterator();
-		int arraySize = HashTable.nextPrime((int) 1.1 * maxSize);
+    private Dictionary<K,V>[] newTable(int capacity) {
+    	int arraySize = HashTable.nextPrime((int) 1.1 * capacity);
 		Dictionary<K,V>[] newTable = new Dictionary[arraySize];
 		
 		for ( int i = 0; i < arraySize; i++ )
 			newTable[i] = new CollisionList<K,V>();
-		
-		maxSize = 2*maxSize;
-		table = newTable;
-		currentSize = 0;
-		
-		while(it.hasNext()) {
-			Entry<K,V> entry = it.next();
-			newTable[hash(entry.getKey())].insert(entry.getKey(), entry.getValue());
-		}
+		return newTable;
     }
 }

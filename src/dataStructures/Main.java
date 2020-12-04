@@ -1,7 +1,5 @@
 package dataStructures;
 
-import dataStructures.AVLTree.AVLNode;
-
 public class Main {
 	public static void main(String[] args) { 
 		/**

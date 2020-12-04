@@ -125,7 +125,6 @@ public abstract class HashTable<K,V> implements Dictionary<K,V>
     {    
         return currentSize == maxSize;
     }
-    public abstract void rehash();
 }
 
 

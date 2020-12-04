@@ -1,9 +1,6 @@
 package dataStructures;
 
-import dataStructures.BinarySearchTree.BSTNode;
-
-public class AVLTree <K extends Comparable<K>,V> 
-	extends AdvancedBSTree<K,V> {
+public class AVLTree <K extends Comparable<K>,V> extends AdvancedBSTree<K,V> {
 	
 static class AVLNode<K,V> extends BSTNode<K,V> {
 		// Height of the node
@@ -87,31 +84,41 @@ static class AVLNode<K,V> extends BSTNode<K,V> {
       }
     }
   } 
+  
+  public V insert(K key, V value) {
+	 if (root == null)
+     	root = new AVLNode<K, V>(key, value, null, null, null);
+     else {	
+    	AVLNode<K,V> parent = (AVLNode<K, V>) findPlaceToInsert(root, key);  
+     	K parentKey = parent.getKey();
+
+     	if(parentKey==key) {
+     		V oldValue = parent.getValue();
+     		parent.setValue(value);
+     		return oldValue;
+     	} else { 
+     		AVLNode<K,V> newNode = new AVLNode<K,V>(key, value ,parent, null, null);
+     		if(parentKey.compareTo(key)<0)
+     			parent.setRight(newNode);
+     		else
+     			parent.setLeft(newNode);
+     		rebalance(newNode);
+     	}
+     }
+     currentSize++;
+     return null;
+  }
  
-@Override
-public V insert(K key, V value) {
-	V valueToReturn=null;
-	AVLNode<K,V> newNode=null; // node where the new entry is being inserted (if find(key)==null)
-	// insert the new Entry (if find(key)==null)
-	// or set the new value (if find(key)!=null)
-	valueToReturn = super.insert(key, value);
-	if(valueToReturn == null) {
-		newNode = (AVLNode<K,V>) super.findNode(root,key); // ahhhhh Este find aumenta a complexidade desnecessariamente, devemos fazer o insert de raiz?
-		if(newNode != null) //(if find(key)==null)
-			rebalance(newNode); // rebalance up from the inserted node
-		    //rebalance checks if it needs to call restructure
-	}
-	return valueToReturn;
-}
 
 @Override
 public V remove(K key) {
-	// TODO
 	V valueToReturn=null;
 	AVLNode<K,V> node=null; // father of node where the key was deleted
-	AVLNode<K,V> newNode = (AVLNode<K,V>) findNode(root,key); // O mesmo erro do ultimo metodo, find uma beca inefeciente.
-	node = (AVLNode<K, V>) newNode.getParent();
-	valueToReturn = super.remove(key);
+	BSTNode<K,V> newNode = (AVLNode<K, V>) findNode(root,key); 
+	if(newNode!=null) {
+		node = (AVLNode<K, V>) newNode.getParent();
+		valueToReturn = super.remove(key);
+	}
 	if(node != null) //(if find(key)==null)
 		rebalance(node); // rebalance up from the node
 	return valueToReturn;
