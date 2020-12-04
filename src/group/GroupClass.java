@@ -11,12 +11,6 @@ import user.User;
  */
 public class GroupClass implements Group, Comparable<Group>{
 	
-	/**
-	 * Decidimos utilizar uma OrderedSequence para guardar os Users pois e necessario estarem ordenados por ordem lexicografica para o comando 3.11.
-	 * Para armazenar as Messages usamos um DoublyLinkedList porque nao precisam de estar ordenadas
-	 * e tambem sentimos que a DLL seria mais eficiente do que a SinlyLinkedList na pesquisa e remocao dos elementos.
-	 */
-	
 	private String name, description;
 	private OrderedDictionary<String,User> members; 
 	private List<Message> messages;
@@ -30,7 +24,7 @@ public class GroupClass implements Group, Comparable<Group>{
 		this.name = name;
 		this.description = description;
 		members = new BinarySearchTree<String, User>(); 
-		messages = new DoublyLinkedList<Message>();
+		messages = new SinglyLinkedList<Message>();
 	}
 	
 	public int compareTo(Group group) {
