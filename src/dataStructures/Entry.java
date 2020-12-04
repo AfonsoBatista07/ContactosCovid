@@ -7,6 +7,7 @@ package dataStructures;
  * @param <K> Generic Key
  * @param <V> Generic Value 
  */
+
 public interface Entry<K,V> {
 	
 	//Returns the key in the entry
